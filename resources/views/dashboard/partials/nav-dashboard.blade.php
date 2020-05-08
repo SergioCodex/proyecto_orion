@@ -5,7 +5,7 @@
             <i class="fas fa-arrow-right text-white"></i>
         </button>
     </div>
-    <div class="shadow">
+    <div class="">
         <h1><a href="dashboard/" class="logo">Proyecto Orion <span>Space Admin</span></a></h1>
 
         @if (Auth::check())
