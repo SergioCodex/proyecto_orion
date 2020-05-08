@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Charts\TripulantesChart;
 use App\Rol;
 use App\Sector;
 use App\Tripulante;
@@ -21,6 +22,10 @@ class TripulanteController extends Controller
     public function index()
     {
 
+        $chart = new TripulantesChart;
+        $chart->labels(['One', 'Two', 'Three']);
+        $chart->dataset('Número', 'line', [1, 2, 1])->color('rbga(203,100,84,1)')->backgroundColor('rgba(152,255,242,0.6)');
+
         $tripulantes = Tripulante::with('rol')->paginate(5);
         $n_tripulantes = Tripulante::get()->count();
         $n_operarios = Tripulante::where('id_rol', 1)->count();
@@ -31,7 +36,7 @@ class TripulanteController extends Controller
         $roles = Rol::get();
         $sectores = Sector::get();
 
-        return view('dashboard.tripulante.index', compact('tripulantes', 'n_tripulantes', 'n_operarios', 'n_superiores', 'capitan', 'roles', 'sectores'));
+        return view('dashboard.tripulante.index', compact('tripulantes', 'n_tripulantes', 'n_operarios', 'n_superiores', 'capitan', 'roles', 'sectores', 'chart'));
     }
 
     /**

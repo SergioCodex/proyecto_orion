@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
 use App\Tripulante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
-class TripulanteController extends Controller
+class TripulanteController extends ApiResponseController
 {
     /**
      * Display a listing of the resource.
@@ -18,6 +19,14 @@ class TripulanteController extends Controller
         $tripulantes = Tripulante::get();
 
         return $tripulantes;
+    }
+
+    public function tripulantePorMes()
+    {
+        $mayo_trip = DB::table('tripulantes')->whereMonth('created_at', '05')->get()->count();
+        $junio_trip = DB::table('tripulantes')->whereMonth('created_at', '06')->get()->count();
+        
+        return $this->successResponse([$mayo_trip, $junio_trip]);
     }
 
     /**

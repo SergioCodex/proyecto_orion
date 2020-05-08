@@ -1,12 +1,12 @@
-<nav id="sidebar" class="order-last img"
-    style="background-image: url({{ asset('storage/images/bg_' . random_int(1,4) . '.jpg') }})">
+<nav id="sidebar" class="order-last img shadow-sm"
+    style="background-image: url({{ asset('storage/images/bg_' . random_int(1,2) . '.jpg') }}); border-left: 2px solid #f3f3f3">
     <div class="custom-menu">
         <button type="button" id="sidebarCollapse" class="btn btn-secondary">
             <i class="fas fa-arrow-right text-white"></i>
         </button>
     </div>
-    <div class="">
-        <h1><a href="index.html" class="logo">Proyecto Orion <span>Space Admin</span></a></h1>
+    <div class="shadow">
+        <h1><a href="dashboard/" class="logo">Proyecto Orion <span>Space Admin</span></a></h1>
 
         @if (Auth::check())
 

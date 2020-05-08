@@ -16944,7 +16944,11 @@ readers do not read off random characters that represent icons */
 }
 
 #sidebar:after {
-  background: linear-gradient(135deg, #474b52 20%, #55a1df 100%) !important;
+  background: linear-gradient(135deg, #3f98e0 30%, #dfdfdf 70%) !important;
+}
+
+#sidebar ul li a {
+  color: white;
 }
 
 .custom-menu {
@@ -16972,5 +16976,14 @@ readers do not read off random characters that represent icons */
   background-color: black;
   background-repeat: no-repeat;
   background-size: 1920px 900px;
+}
+
+.azul {
+  color: #4698DB;
+}
+
+.tarjeta {
+  border: 1px solid #EDEDED;
+  border-radius: 5px;
 }
 

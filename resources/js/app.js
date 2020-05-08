@@ -63,9 +63,9 @@ const app = new Vue({
                 this.id_sector = 1;
                 this.email = null;
                 this.password = null,
-                this.errors = [],
-                    
-                $('#creacion').modal('hide');
+                    this.errors = [],
+
+                    $('#creacion').modal('hide');
 
             }).catch(error => {
 
@@ -100,26 +100,25 @@ const app = new Vue({
     }
 });
 
-
 (function ($) {
 
-	"use strict";
+    "use strict";
 
-	var fullHeight = function () {
+    var fullHeight = function () {
 
-		$('.js-fullheight').css('height', $(window).height());
-		$(window).resize(function () {
-			$('.js-fullheight').css('height', $(window).height());
-		});
+        $('.js-fullheight').css('height', $(window).height());
+        $(window).resize(function () {
+            $('.js-fullheight').css('height', $(window).height());
+        });
 
-	};
-	fullHeight();
+    };
+    fullHeight();
 
-	$('#sidebarCollapse').on('click', function () {
-		$('#sidebar').toggleClass('active');
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
     });
-    
-    $(document).on('click', '.showTrip', function(){
+
+    $(document).on('click', '.showTrip', function () {
         var nombre = $(this).attr('data-name');
         var apellido = $(this).attr('data-apellido');
         var email = $(this).attr('data-email');
@@ -133,6 +132,6 @@ const app = new Vue({
         $('#show input[name=sector]').val(sector);
 
         $('#show').modal('show');
-    })
+    });
 
 })(jQuery);

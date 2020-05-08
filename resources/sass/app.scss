@@ -15,8 +15,16 @@
 
 
 #sidebar:after{
-    background: linear-gradient(135deg, #474b52 20%, #55a1df 100%) !important;
+    background: linear-gradient(135deg, #3f98e0 30%, #dfdfdf 70%) !important;
 }
+
+#sidebar ul li a {
+    color: rgb(255, 255, 255);
+}
+
+// #sidebar ul li.active > a {
+//     color: rgb(187, 187, 187);
+// }
 
 .custom-menu{
     margin-left: -50px !important;
@@ -43,4 +51,13 @@
     background-color: rgb(0, 0, 0);
     background-repeat: no-repeat;
     background-size: 1920px 900px;
+}
+
+.azul {
+    color: #4698DB;
+}
+
+.tarjeta {
+    border: 1px solid #EDEDED;
+    border-radius: 5px;
 }

@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('tripulante/mes', 'api\TripulanteController@tripulantePorMes');
+
 Route::resource('tripulante', 'api\TripulanteController')->only([
     'index', 'show'
 ]);
+
