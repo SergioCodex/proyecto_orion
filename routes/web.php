@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::resource('dashboard/tripulante', 'dashboard\TripulanteController');
+Route::resource('dashboard/incidencia', 'dashboard\IncidenciaController');
 
 Auth::routes();
 

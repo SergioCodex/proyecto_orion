@@ -14,6 +14,13 @@ use App\Http\Requests\UpdateTripulantePut;
 
 class TripulanteController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +33,7 @@ class TripulanteController extends Controller
         $chart->labels(['One', 'Two', 'Three']);
         $chart->dataset('Número', 'line', [1, 2, 1])->color('rbga(203,100,84,1)')->backgroundColor('rgba(152,255,242,0.6)');
 
-        $tripulantes = Tripulante::with('rol')->paginate(5);
+        $tripulantes = Tripulante::with('rol')->paginate(10);
         $n_tripulantes = Tripulante::get()->count();
         $n_operarios = Tripulante::where('id_rol', 1)->count();
         $n_superiores = Tripulante::where('id_rol', 2)->count();
@@ -120,6 +127,6 @@ class TripulanteController extends Controller
     public function destroy(Tripulante $tripulante)
     {
         $tripulante->delete();
-        return back()->with('status', 'Post eliminado correctamente!');
+        return back()->with('status', '¡Tripulante eliminado correctamente!');
     }
 }

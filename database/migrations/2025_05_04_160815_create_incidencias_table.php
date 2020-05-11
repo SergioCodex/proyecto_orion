@@ -15,13 +15,13 @@ class CreateIncidenciasTable extends Migration
     {
         Schema::create('incidencias', function (Blueprint $table) {
             $table->id();
+            $table->enum('status', ['En progreso', 'Resuelto', 'Abierto'])->default('En progreso');
             $table->bigInteger('id_comunicador')->unsigned();
             $table->bigInteger('id_sector_origen')->unsigned();
+            $table->string('titulo');
             $table->string('descripcion');
+            $table->bigInteger('id_agente')->unsigned()->nullable();
             $table->timestamps();
-
-            $table->foreign('id_comunicador')->references('id')->on('tripulantes');
-            $table->foreign('id_sector_origen')->references('id')->on('sectores');
         });
     }
 

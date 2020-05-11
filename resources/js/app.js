@@ -5,6 +5,8 @@
  */
 
 require('./bootstrap');
+const ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
+
 
 window.Vue = require('vue');
 
@@ -20,7 +22,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('show-tripulante', require('./components/ShowTripulanteComponent.vue').default);
+Vue.component('show-incidencia', require('./components/ShowIncidenciaComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -133,5 +135,16 @@ const app = new Vue({
 
         $('#show').modal('show');
     });
+
+
+    ClassicEditor
+        .create(document.querySelector('#descripcion'))
+        .then(editor => {
+            console.log('loaded');
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
 })(jQuery);

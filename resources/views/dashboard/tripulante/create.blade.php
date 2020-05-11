@@ -19,7 +19,7 @@ Registrar Tripulante
 
 <form v-on:submit.prevent="createTripulante" method="post">
     <div class="modal fade" id="creacion">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4>Creación</h4>

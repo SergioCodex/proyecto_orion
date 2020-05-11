@@ -1,19 +1,20 @@
 @extends('dashboard.master')
 
 @section('title')
-Dashboard[Tripulante]
+Dashboard [Tripulante]
 @endsection
 
 @section('content')
 <div class="row mt-4"></div>
 <div class="row justify-content-end mt-5">
     <div class="col-3">
-        <h2 class="mb-4 ml-5">Datos Tripulantes</h2>
+        <h2 class="mb-4 ml-">Nº tripulantes/mes <i class="fa fa-user-astronaut ml-3"></i></h2>
     </div>
     <div class="col-3">
         @include('dashboard.partials.success-action')
         @if (session('status'))
-        <div class="alert alert-success text-center">
+        <div class="alert alert-success text-center ">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             {{ session('status') }}
         </div>
         @endif
@@ -23,52 +24,11 @@ Dashboard[Tripulante]
             data-target="#creacion"> <i class="fa fa-plus mr-1"></i> Registrar
             Tripulante</button>
     </div>
-
 </div>
-<div class="row justify-content-between">
-    <div class="col-6">
-        <div class=" ml-5">
-            <table class="table table-responsive table-hover " style="padding: 20px">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Rol</th>
-                        <th>Sector</th>
-                        <th>Email</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tripulantes as $tripulante)
-                    <tr>
-                        <td>{{ $tripulante->id }}</td>
-                        <td>{{ $tripulante->name }}</td>
-                        <td>{{ $tripulante->rol->nombre }}</td>
-                        <td>{{ $tripulante->sector->nombre }}</td>
-                        <td>{{ $tripulante->email }}</td>
-                        <td><button class="btn btn-primary btn-sm showTrip" data-name="{{ $tripulante->name }}"
-                                data-apellido="{{ $tripulante->apellidos }}" data-email="{{ $tripulante->email }}"
-                                data-rol="{{ $tripulante->rol->nombre }}"
-                                data-sector="{{ $tripulante->sector->nombre }}"><i class="fa fa-eye"></i></button>
-                            <a href="{{ route('tripulante.edit', $tripulante->id)}}" class="btn btn-primary btn-sm"><i
-                                    class="fa fa-edit"></i></a>
-                            <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $tripulante->id }}"
-                                class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-            {{ $tripulantes->links() }}
-        </div>
-
-
-        @include('dashboard.tripulante.create') {{-- No muestra el error de email duplicado --}}
-        @include('dashboard.tripulante.show')
-        @include('dashboard.tripulante.destroy')
+<div class="row justify-content-end">
+    <div class="tarjeta shadow-sm" style="padding: 15px; margin-right:10px">
+        <canvas id="graficoBarra" width="700" height="300"></canvas>
     </div>
-
     <div class="col-3" style="margin-top: 50px">
         <div class="tarjeta shadow-sm" style="height: 100px">
             <div class="card-body mt-2">
@@ -140,12 +100,12 @@ Dashboard[Tripulante]
         <button class="btn btn-primary btn-lg btn-block mt-3 shadow-sm">Botón</button>
     </div>
 </div>
-<div class="row mt-4">
+{{-- <div class="row mt-4">
     <div class="ml-5 col-7">
         <h3 class="">Datos</h3>
     </div>
     <div class="ml-5 col-auto">
-        <h3 class="">Datos</h3>
+        <h3 class="">Número de afiliaciones/mes</h3>
     </div>
 </div>
 <div class="row justify-content-start">
@@ -155,11 +115,54 @@ Dashboard[Tripulante]
     <div class="tarjeta shadow-sm p-3 col-auto ml-5">
         <canvas id="graficoBarra" width="400" height="400"></canvas>
     </div>
-</div>
+</div> --}}
 
 <div class="row">
-    <div class="col-4">
+    <div class="col-12 mt-4">
+        <div class="">
+            <div class="col-3">
+                <h2 class="mb-4">Tripulantes <i class="fa fa-user-astronaut ml-3"></i></h2>
+            </div>
+            <table class="table table-hover table-bordered shadow-sm"
+                style="padding: 20px !important; font-family: 'Fira Sans Condensed', sans-serif; font-size: 17px;">
+                <thead>
+                    <tr>
+                        <th>ID <i class="fa fa-id-card ml-1"></i></th>
+                        <th>Nombre <i class="fa fa-signature ml-1"></i></th>
+                        <th>Rol <i class="fa fa-wrench ml-1"></i></th>
+                        <th>Sector <i class="fa fa-warehouse ml-1"></i></th>
+                        <th>Email <i class="fa fa-envelope ml-1"></i></th>
+                        <th>Acciones <i class="fa fa-desktop ml-1"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tripulantes as $tripulante)
+                    <tr class="">
+                        <td class="font-italic">#{{ $tripulante->id }}</td>
+                        <td>{{ $tripulante->name }}</td>
+                        <td>{{ $tripulante->rol->nombre }}</td>
+                        <td>{{ $tripulante->sector->nombre }}</td>
+                        <td>{{ $tripulante->email }}</td>
+                        <td style="width: 127px"><button class="btn btn-primary btn-sm showTrip"
+                                data-name="{{ $tripulante->name }}" data-apellido="{{ $tripulante->apellidos }}"
+                                data-email="{{ $tripulante->email }}" data-rol="{{ $tripulante->rol->nombre }}"
+                                data-sector="{{ $tripulante->sector->nombre }}"><i class="fa fa-eye"></i></button>
+                            <a href="{{ route('tripulante.edit', $tripulante->id)}}" class="btn btn-primary btn-sm"><i
+                                    class="fa fa-edit"></i></a>
+                            <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $tripulante->id }}"
+                                class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>
+                    </tr>
+                    @endforeach
 
+                </tbody>
+            </table>
+            {{ $tripulantes->links() }}
+        </div>
+
+
+        @include('dashboard.tripulante.create') {{-- No muestra el error de email duplicado --}}
+        @include('dashboard.tripulante.show')
+        @include('dashboard.tripulante.destroy')
     </div>
 </div>
 
@@ -193,9 +196,9 @@ Dashboard[Tripulante]
                     }]   
                 }
             };
-
+            
             var dataBar = {
-                labels: ["Mayo", "Junio"],
+                labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                 datasets: [
                 {
                     label: "Tripulantes",
@@ -204,7 +207,7 @@ Dashboard[Tripulante]
                     backgroundColor: "#98FFC588",
                     borderColor: "#98FFC5FF",
                     borderWidth: 3,
-                    data: [mayo, junio]
+                    data: [0, 0, 0, 0, mayo, junio]
                 }
                 ]
             }
