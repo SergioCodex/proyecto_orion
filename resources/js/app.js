@@ -140,11 +140,10 @@ const app = new Vue({
     ClassicEditor
         .create(document.querySelector('#descripcion'))
         .then(editor => {
-            console.log('loaded');
-            console.log(editor);
+
         })
         .catch(error => {
-            console.error(error);
+
         });
 
 })(jQuery);

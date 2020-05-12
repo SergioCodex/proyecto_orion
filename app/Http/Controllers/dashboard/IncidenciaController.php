@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Notas;
 use App\Sector;
 use App\Incidencia;
 use Illuminate\Http\Request;
@@ -112,4 +113,10 @@ class IncidenciaController extends Controller
         $tripulante->delete();
         return back()->with('status', '¡Ticket eliminado correctamente!');
     }
+
+    public function resolve(Incidencia $incidencia){
+
+        return view('dashboard.incidencia.resolve', compact('incidencia'));
+    }
+
 }

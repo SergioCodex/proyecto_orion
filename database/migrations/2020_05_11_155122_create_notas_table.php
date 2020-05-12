@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectoresTable extends Migration
+class CreateNotasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateSectoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('sectores', function (Blueprint $table) {
+        Schema::create('notas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->bigInteger('id_incidencia');
+            $table->bigInteger('id_tripulante');
+            $table->string('contenido', 100);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateSectoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sectores');
+        Schema::dropIfExists('notas');
     }
 }

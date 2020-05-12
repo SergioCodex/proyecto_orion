@@ -66,11 +66,12 @@ Dashboard [Incidencias]
                     <td>{{ $incidencia->sector->nombre }}</td>
                     <td>{{ $incidencia->created_at->format('d-m-Y') }}</td>
                     <td>{{ $incidencia->agente->name }}</td>
-                    <td style="width: 127px"><button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
+                    <td style="width: 128px">
                         <a href="{{ route('incidencia.edit', $incidencia->id) }}" class="btn btn-primary btn-sm"><i
                                 class="fa fa-edit"></i></a>
                         <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $incidencia->id }}"
-                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>
+                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                        <a href="{{route('incidencia.resolve', $incidencia->id)}}" class="btn btn-success btn-sm"><i class="fa fa-comments"></i></a>
                     </td>
                 </tr>
                 @endforeach

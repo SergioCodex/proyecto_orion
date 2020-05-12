@@ -16987,6 +16987,18 @@ readers do not read off random characters that represent icons */
   border-radius: 5px;
 }
 
+.tarjeta-amarilla {
+  padding: 5px;
+  border: 1px solid #ffd769;
+  background-color: #ffedbd;
+}
+
+.nota-info {
+  padding: 5px;
+  border-left: 5px solid #50b9ff;
+  background-color: #cbf7ff;
+}
+
 .ck-editor__editable_inline {
   min-height: 400px;
 }

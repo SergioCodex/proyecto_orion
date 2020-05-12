@@ -23,3 +23,7 @@ Route::resource('dashboard/incidencia', 'dashboard\IncidenciaController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/incidencia/{incidencia}/resolve', 'dashboard\IncidenciaController@resolve')->name('incidencia.resolve');
+Route::post('/incidencia/store_nota', 'dashboard\NotaController@store')->name('nota.store');
+Route::delete('/incidencia/destroy_nota/{id}', 'dashboard\NotaController@destroy')->name('nota.destroy');
+Route::post('/incidencia/store_mensaje', 'dashboard\MensajeIncidenciaController@store')->name('mensajeincidencia.store');

@@ -50070,12 +50070,7 @@ var app = new Vue({
     $('#show input[name=sector]').val(sector);
     $('#show').modal('show');
   });
-  ClassicEditor.create(document.querySelector('#descripcion')).then(function (editor) {
-    console.log('loaded');
-    console.log(editor);
-  })["catch"](function (error) {
-    console.error(error);
-  });
+  ClassicEditor.create(document.querySelector('#descripcion')).then(function (editor) {})["catch"](function (error) {});
 })(jQuery);
 
 /***/ }),

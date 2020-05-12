@@ -21,4 +21,12 @@ class Incidencia extends Model
     public function agente(){
         return $this->belongsTo(Tripulante::class, 'id_agente', 'id');
     }
+
+    public function notas(){
+        return $this->hasMany(Notas::class, 'id_incidencia', 'id');
+    }
+
+    public function mensajes_incidencias(){
+        return $this->hasMany(MensajeIncidencia::class, 'id_incidencia', 'id');
+    }
 }
