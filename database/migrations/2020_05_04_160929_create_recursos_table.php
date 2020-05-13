@@ -15,11 +15,11 @@ class CreateRecursosTable extends Migration
     {
         Schema::create('recursos', function (Blueprint $table) {
             $table->id();
-            $table->double('%_oxigeno');
-            $table->double('%_agua');
-            $table->double('%_alimento');
-            $table->double('%_combustible');
-            $table->double('%_energia');
+            $table->double('oxigeno');
+            $table->double('agua');
+            $table->double('alimento');
+            $table->double('combustible');
+            $table->double('energia');
             $table->timestamps();
         });
     }

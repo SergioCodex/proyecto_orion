@@ -19,11 +19,17 @@ Route::get('/', function () {
 
 Route::resource('dashboard/tripulante', 'dashboard\TripulanteController');
 Route::resource('dashboard/incidencia', 'dashboard\IncidenciaController');
+Route::resource('dashboard/recurso', 'dashboard\RecursoController');
+Route::resource('dashboard/objetivo', 'dashboard\ObjetivoController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/incidencia/{incidencia}/resolve', 'dashboard\IncidenciaController@resolve')->name('incidencia.resolve');
+
 Route::post('/incidencia/store_nota', 'dashboard\NotaController@store')->name('nota.store');
+Route::put('/incidencia/update_nota/{id}', 'dashboard\NotaController@update')->name('nota.update');
 Route::delete('/incidencia/destroy_nota/{id}', 'dashboard\NotaController@destroy')->name('nota.destroy');
+
 Route::post('/incidencia/store_mensaje', 'dashboard\MensajeIncidenciaController@store')->name('mensajeincidencia.store');
+Route::put('/incidencia/update-status/{incidencia}', 'dashboard\IncidenciaController@update_status')->name('incidencia.update-status');

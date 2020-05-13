@@ -27,4 +27,12 @@ class NotaController extends Controller
         $nota->delete();
         return back()->with('status', 'Nota eliminada con éxito');
     }
+
+    public function update(Request $request, $id){
+        $nota = Notas::findOrFail($id);
+        $nota->update([
+            'contenido' => $request->contenido
+        ]);
+        return back()->with('status', 'Nota editada correctamente');
+    }
 }

@@ -26,7 +26,7 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencia::orderBy('created_at', 'DESC')->paginate(15);
+        $incidencias = Incidencia::with(['tripulante', 'sector', 'agente'])->orderBy('created_at', 'DESC')->paginate(15);
         $n_incidencias = Incidencia::get()->count();
         $n_respondidos = Incidencia::where('status', 'Abierto')->count();
         $n_resueltos = Incidencia::where('status', 'Resuelto')->count();
@@ -116,7 +116,15 @@ class IncidenciaController extends Controller
 
     public function resolve(Incidencia $incidencia){
 
+        $incidencia->with(['notas', 'mensajes_incidencias']);
         return view('dashboard.incidencia.resolve', compact('incidencia'));
+    }
+
+    public function update_status(Request $request, Incidencia $incidencia){
+
+        $incidencia->update(["status" => $request->status]);
+        return back()->with('status', 'Estado actualizado correctamente');
+
     }
 
 }

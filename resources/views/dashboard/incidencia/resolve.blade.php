@@ -1,5 +1,9 @@
 @extends('dashboard.master')
 
+@section('title')
+Incidencia Nº {{ $incidencia->id }}
+@endsection
+
 @section('content')
 <div class="row mt-5 justify-content-center">
     <div class="col-10 ">
@@ -36,9 +40,8 @@
                             <div class="col-9 ml-2">
                                 <small> Nota escrita por: <b>{{ $nota->tripulante->name }}</b></small>
                             </div>
-                            <div class="col-2">
-                                <button class="btn btn-link text-secondary"><i class="fa fa-edit"></i></button>
-                                <form style="display: inline; margin-left: -15px"
+                            <div class="col-1 mr-3">
+                                <form style="display: inline;"
                                     action="{{ route('nota.destroy', $nota->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -52,9 +55,10 @@
                             </div>
                         </div>
                     </div>
+                    
                     @endforeach
-                    <button data-toggle="modal" data-target="#crearNota" class="btn btn-outline-primary mt-3"><i
-                            class="fa fa-sticky-note mr-1"></i> Añadir
+                    <button data-nota="" data-toggle="modal" data-target="#crearNota"
+                        class="btn btn-outline-primary mt-3"><i class="fa fa-sticky-note mr-1"></i> Añadir
                         nota</button>
                     @include('dashboard.partials.create-nota')
                 </div>
@@ -111,15 +115,19 @@
 
                 </div>
                 <div class="col-auto">
-                    <form action="" style="display: flex">
+                    <form action="{{ route('incidencia.update-status', $incidencia->id)}}" style="display: flex"
+                        method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
-                            <select class="form-control" name="status" id="" class="mr-5">
-                                <option {{$resuelto}}>Resuelto</option>
-                                <option {{$progreso}}>En progreso</option>
-                                <option {{$abierto}}>Abierto</option>
+                            <select class="form-control" name="status" class="mr-5">
+                                <option value="Resuelto" {{$resuelto}}>Resuelto</option>
+                                <option value="En progreso" {{$progreso}}>En progreso</option>
+                                <option value="Abierto" {{$abierto}}>Abierto</option>
                             </select>
                         </div>
-                        <div class="col-auto"><button class="btn btn-block btn-outline-primary">Cambiar</button></div>
+                        <div class="col-auto"><button type="submit"
+                                class="btn btn-block btn-outline-primary">Cambiar</button></div>
                     </form>
                 </div>
             </div>
@@ -192,4 +200,5 @@
         </div>
     </div>
 </div>
+
 @endsection

@@ -31,10 +31,13 @@
                 <a href="#"><span class="fa fa-sticky-note mr-3"></span> Datos</a>
             </li>
             <li class="submenu-nav">
-                <a href="#"><span class="fa fa-cogs mr-3"></span> Recursos</a>
+                <a href="{{ route('objetivo.index')}}"><span class="fa fa-tasks mr-3"></span> Objetivos</a>
             </li>
             <li class="submenu-nav">
-                <a href="#"><span class="fa fa-paper-plane mr-3"></span> Mensajes</a>
+                <a href="{{ route('recurso.index')}}"><span class="fa fa-cogs mr-3"></span> Recursos</a>
+            </li>
+            <li class="submenu-nav">
+                <a href="#"><span class="fa fa-paper-plane mr-3"></span> Mensajería</a>
             </li>
 
             <div class="mt-3">
