@@ -86,7 +86,7 @@
             labels: ['Consumido', 'Sin usar'],
             datasets: [
                     {
-                        data: [60, 40],
+                        data: [30, 40],
                         backgroundColor: [
                             "#FFFF8188", 
                             "#FFC28188"

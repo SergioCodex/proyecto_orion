@@ -41,18 +41,33 @@
                     <td>{{ $objetivo->descripcion }}</td>
                     <td>{{ $objetivo->sector->nombre }}</td>
                     <td>{{ $objetivo->created_at->format('d-m-Y') }}</td>
-                    <td style="width: 128px">
-                        {{-- <a href="{{ route('objetivo.edit', $objetivo->id) }}" class="btn btn-primary btn-sm"><i
-                                class="fa fa-edit"></i></a>
+                    <td style="width: 92px">
                         <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $objetivo->id }}"
-                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                        <a href="{{route('objetivo.resolve', $objetivo->id)}}" class="btn btn-success btn-sm"><i class="fa fa-comments"></i></a> --}}
+                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button> 
+                        <a href="{{ route('objetivo.gestion', $objetivo->id) }}" class="btn btn-success btn-sm"><i class="fa fa-hammer"></i></a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
         {{ $objetivos->links() }}
+        @include('dashboard.objetivo.destroy')
     </div>
 </div>
+
+<script type="application/javascript">
+    window.onload = function(){
+        $('#deleteModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var id = button.data('id')
+
+        action = $('#formDelete').attr('data-action').slice(0, -1);
+        //console.log(action+id);
+
+        $('#formDelete').attr('action', action + id)
+        var modal = $(this)
+        modal.find('.modal-title').text('Eliminar objetivo: ' + id)
+    });
+}
+</script>
 @endsection

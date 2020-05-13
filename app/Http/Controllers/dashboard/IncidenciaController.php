@@ -109,8 +109,8 @@ class IncidenciaController extends Controller
      */
     public function destroy($id)
     {
-        $tripulante = Incidencia::findOrFail($id);
-        $tripulante->delete();
+        $incidencia = Incidencia::findOrFail($id);
+        $incidencia->delete();
         return back()->with('status', '¡Ticket eliminado correctamente!');
     }
 

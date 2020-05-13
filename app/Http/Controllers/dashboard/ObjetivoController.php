@@ -82,6 +82,13 @@ class ObjetivoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $objetivo = Objetivo::findOrFail($id);
+        $objetivo->delete();
+        return back()->with('status', '¡Ticket eliminado correctamente!');
+    }
+
+    public function gestion(Objetivo $objetivo)
+    {
+        return view('dashboard.objetivo.gestion', compact('objetivo'));
     }
 }
