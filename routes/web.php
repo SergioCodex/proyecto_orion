@@ -35,3 +35,4 @@ Route::post('/incidencia/store_mensaje', 'dashboard\MensajeIncidenciaController@
 Route::put('/incidencia/update-status/{incidencia}', 'dashboard\IncidenciaController@update_status')->name('incidencia.update-status');
 
 Route::get('/objetivo/{objetivo}/gestion', 'dashboard\ObjetivoController@gestion')->name('objetivo.gestion');
+Route::put('/objetivo/{objetivo}/update-consumo', 'dashboard\ObjetivoController@update_consumo')->name('objetivo.update-consumo');

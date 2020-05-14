@@ -34,8 +34,8 @@ Dashboard [Incidencias]
 </div>
 <div class="row mt-3">
     <div class="col-12">
-        <table class="table table-hover table-bordered shadow"
-            style="padding: 20px; font-family: 'Fira Sans Condensed', sans-serif; font-size: 17px;">
+        <table id="tabla_datatable" class="table table-hover table-bordered shadow"
+            style="font-family: 'Fira Sans Condensed', sans-serif; font-size: 17px;">
             <thead>
                 <tr>
                     <th>Status</th>
@@ -66,7 +66,7 @@ Dashboard [Incidencias]
                     <td>{{ $incidencia->sector->nombre }}</td>
                     <td>{{ $incidencia->created_at->format('d-m-Y') }}</td>
                     <td>{{ $incidencia->agente->name }}</td>
-                    <td style="width: 128px">
+                    <td style="width: 108px">
                         <a href="{{ route('incidencia.edit', $incidencia->id) }}" class="btn btn-primary btn-sm"><i
                                 class="fa fa-edit"></i></a>
                         <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $incidencia->id }}"
@@ -77,7 +77,7 @@ Dashboard [Incidencias]
                 @endforeach
             </tbody>
         </table>
-        {{ $incidencias->links() }}
+        {{-- {{ $incidencias->links() }} --}}
         @include('dashboard.incidencia.destroy')
     </div>
 </div>
@@ -94,6 +94,33 @@ Dashboard [Incidencias]
         $('#formDelete').attr('action', action + id)
         var modal = $(this)
         modal.find('.modal-title').text('Eliminar ticket: ' + id)
+    });
+
+    $('#tabla_datatable').DataTable({
+        "language": {
+        "sProcessing":    "Procesando...",
+        "sLengthMenu":    "Mostrar _MENU_ registros",
+        "sZeroRecords":   "No se encontraron resultados",
+        "sEmptyTable":    "Ningún dato disponible en esta tabla",
+        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":   "",
+        "sSearch":        "Buscar:",
+        "sUrl":           "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst":    "Primero",
+            "sLast":    "Último",
+            "sNext":    "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    }
     });
 }
 </script>

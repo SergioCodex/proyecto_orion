@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\ConsumosObjetivo;
 use App\Http\Controllers\Controller;
 use App\Objetivo;
+use App\Recurso;
+use App\RequisitosObjetivo;
 use Illuminate\Http\Request;
 
 class ObjetivoController extends Controller
@@ -74,6 +77,32 @@ class ObjetivoController extends Controller
         //
     }
 
+    public function update_consumo(Request $request, Objetivo $objetivo){
+
+        ConsumosObjetivo::where('id_objetivo', $objetivo->id)->update([
+            'oxigeno' => $request->oxigeno,
+            'energia' => $request->energia,
+            'combustible' => $request->combustible,
+            'agua' => $request->agua,
+            'alimento' => $request->alimento,
+        ]);
+
+        $recursos_disp = Recurso::first();
+        $consumos =  ConsumosObjetivo::get();
+
+        $array_recursos = ['oxigeno', 'energia', 'combustible', 'agua', 'alimento'];
+
+        foreach ($array_recursos as $recurso) {
+            $array_totales[$recurso] = $consumos->sum($recurso);
+        }
+
+        foreach ($array_totales as $recurso => $valor) {
+            if($valor >= $recursos_disp->$recurso){
+                //notificaciones
+            }
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -89,6 +118,9 @@ class ObjetivoController extends Controller
 
     public function gestion(Objetivo $objetivo)
     {
-        return view('dashboard.objetivo.gestion', compact('objetivo'));
+        $recursos = Recurso::first();
+        $requisitos = RequisitosObjetivo::where('id_objetivo', $objetivo->id)->first();
+        //dd($requisitos);
+        return view('dashboard.objetivo.gestion', compact('objetivo', 'recursos', 'requisitos'));
     }
 }

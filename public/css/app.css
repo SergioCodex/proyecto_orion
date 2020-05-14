@@ -17012,3 +17012,10 @@ readers do not read off random characters that represent icons */
   border-radius: 50px;
 }
 
+.tarjeta-recursos {
+  padding: 5px;
+  background-color: #f8fafb;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+}
+

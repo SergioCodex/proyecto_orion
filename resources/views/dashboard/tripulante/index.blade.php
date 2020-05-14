@@ -123,8 +123,8 @@ Dashboard [Tripulante]
             <div class="col-3">
                 <h2 class="mb-4">Tripulantes <i class="fa fa-user-astronaut ml-3"></i></h2>
             </div>
-            <table class="table table-hover table-bordered shadow-sm"
-                style="padding: 20px !important; font-family: 'Fira Sans Condensed', sans-serif; font-size: 17px;">
+            <table id="tabla_datatable" class="table table-hover table-bordered shadow-sm"
+                style="font-family: 'Fira Sans Condensed', sans-serif; font-size: 17px;">
                 <thead>
                     <tr>
                         <th>ID <i class="fa fa-id-card ml-1"></i></th>
@@ -138,7 +138,7 @@ Dashboard [Tripulante]
                 <tbody>
                     @foreach ($tripulantes as $tripulante)
                     <tr class="">
-                        <td class="font-italic">#{{ $tripulante->id }}</td>
+                        <td class="font-italic">{{ $tripulante->id }}</td>
                         <td>{{ $tripulante->name }}</td>
                         <td>{{ $tripulante->rol->nombre }}</td>
                         <td>{{ $tripulante->sector->nombre }}</td>
@@ -156,9 +156,8 @@ Dashboard [Tripulante]
 
                 </tbody>
             </table>
-            {{ $tripulantes->links() }}
+            {{-- {{ $tripulantes->links() }} --}}
         </div>
-
 
         @include('dashboard.tripulante.create') {{-- No muestra el error de email duplicado --}}
         @include('dashboard.tripulante.show')
@@ -178,6 +177,33 @@ Dashboard [Tripulante]
         $('#formDelete').attr('action', action + id)
         var modal = $(this)
         modal.find('.modal-title').text('Eliminar tripulante: ' + id)
+    });
+
+    $('#tabla_datatable').DataTable({
+        "language": {
+        "sProcessing":    "Procesando...",
+        "sLengthMenu":    "Mostrar _MENU_ registros",
+        "sZeroRecords":   "No se encontraron resultados",
+        "sEmptyTable":    "Ningún dato disponible en esta tabla",
+        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":   "",
+        "sSearch":        "Buscar:",
+        "sUrl":           "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst":    "Primero",
+            "sLast":    "Último",
+            "sNext":    "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    }
     });
 
     fetch('/api/tripulante/mes')

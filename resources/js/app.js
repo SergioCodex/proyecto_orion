@@ -145,5 +145,6 @@ const app = new Vue({
         .catch(error => {
 
         });
+        
 
 })(jQuery);
