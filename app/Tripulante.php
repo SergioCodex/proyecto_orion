@@ -6,9 +6,13 @@ use App\Rol;
 use App\Sector;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Tripulante extends Model
 {
+
+    use Notifiable;
+
     protected $fillable = ['name', 'email', 'password', 'id_rol', 'id_sector', 'apellidos'];
 
     public function rol()

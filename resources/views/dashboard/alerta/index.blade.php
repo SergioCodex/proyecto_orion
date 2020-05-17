@@ -1,7 +1,7 @@
 @extends('dashboard.master')
 
 @section('title')
-Dashboard [Objetivos]
+Dashboard [Alertas]
 @endsection
 
 @section('content')
@@ -15,54 +15,49 @@ Dashboard [Objetivos]
         @endif
     </div>
 </div>
-<div class="row mt-2 mb-3">
-    <div class="col-12">
-        <a href="{{ route('objetivo.create')}}" class="btn btn-success btn-lg btn-block shadow-sm text-light"> <i
-                class="fa fa-plus mr-1"></i>Registrar objetivo</a>
-    </div>
-</div>
-<div class="row mt-3">
+<div class="row mt-5">
     <div class="col-12">
         <table id="tabla_datatable" class="table table-hover table-bordered shadow"
             style="font-family: 'Fira Sans Condensed', sans-serif; font-size: 17px;">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Título</th>
-                    <th>Descripción</th>
+                    <th>Recurso</th>
                     <th>Sector</th>
+                    <th>Objetivo</th>
+                    <th>Mensaje</th>
                     <th>Generado en</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($objetivos as $objetivo)
+                @foreach ($alertas as $alerta)
 
-                @if ($objetivo->status == 'Resuelto')
+                @if ($alerta->status == 'Resuelto')
                 <tr class="table-success" style="background-color: rgb(243, 248, 255)">
-                    @elseif($objetivo->status == "Abierto")
+                    @elseif($alerta->status == "Abierto")
                 <tr class="table-info" style="background-color: rgb(243, 248, 255)">
                     @else
                 <tr style="background-color: rgb(243, 248, 255)">
                     @endif
 
-                    <td class="font-italic">{{ $objetivo->id }}</td>
-                    <td class="">{{ $objetivo->titulo }}</td>
-                    <td>{{ $objetivo->descripcion }}</td>
-                    <td>{{ $objetivo->sector->nombre }}</td>
-                    <td>{{ $objetivo->created_at->format('d-m-Y') }}</td>
+                    <td class="font-italic">{{ $alerta->id }}</td>
+                    <td class="">{{ $alerta->recurso }}</td>
+                    <td>{{ $alerta->sector->nombre }}</td>
+                    <td>{{ $alerta->objetivo->titutlo }}</td>
+                    <td>{{ $alerta->created_at->format('d-m-Y') }}</td>
                     <td style="width: 62px;">
-                        <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $objetivo->id }}"
+                        <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $alerta->id }}"
                             class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                        <a href="{{ route('objetivo.gestion', $objetivo->id) }}" class="btn btn-success btn-sm"><i
+                        <a href="{{ route('alerta.gestion', $alerta->id) }}" class="btn btn-success btn-sm"><i
                                 class="fa fa-hammer"></i></a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        {{-- {{ $objetivos->links() }} --}}
-        @include('dashboard.objetivo.destroy')
+        {{-- {{ $alertas->links() }} --}}
+        {{-- @include('dashboard.alerta.destroy') --}}
     </div>
 </div>
 
@@ -77,7 +72,7 @@ Dashboard [Objetivos]
 
         $('#formDelete').attr('action', action + id)
         var modal = $(this)
-        modal.find('.modal-title').text('Eliminar objetivo: ' + id)
+        modal.find('.modal-title').text('Eliminar alerta: ' + id)
     });
 
     $('#tabla_datatable').DataTable({

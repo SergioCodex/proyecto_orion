@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\ConsumosObjetivo;
-use App\Http\Controllers\Controller;
-use App\Objetivo;
+use App\Alerta;
+use App\Sector;
 use App\Recurso;
+use App\Objetivo;
+use App\Tripulante;
+use App\ConsumosObjetivo;
 use App\RequisitosObjetivo;
 use Illuminate\Http\Request;
+use App\Notifications\Alarma;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreObjetivoPost;
 
 class ObjetivoController extends Controller
 {
@@ -29,7 +35,9 @@ class ObjetivoController extends Controller
      */
     public function create()
     {
-        //
+        $sectores = Sector::get();
+        $recursos = Recurso::first();
+        return view('dashboard.objetivo.create', compact('recursos', 'sectores'));
     }
 
     /**
@@ -38,9 +46,33 @@ class ObjetivoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreObjetivoPost $request)
     {
-        //
+        $requisitos = RequisitosObjetivo::create([
+            'oxigeno' => $request->oxigeno,
+            'agua' => $request->agua,
+            'alimento' => $request->alimento,
+            'combustible' => $request->combustible,
+            'energia' => $request->energia
+        ]);
+
+        $new_objetivo = Objetivo::create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'id_sector' => $request->id_sector,
+            'id_requisitos' => $requisitos->id
+        ]);
+
+        $consumo = ConsumosObjetivo::create([
+            'id_objetivo' => $new_objetivo->id
+        ]);
+
+        $requisitos->update(['id_objetivo' => $new_objetivo->id]);
+
+        $new_objetivo->update(['id_consumo' => $consumo->id]);
+
+
+        return redirect('dashboard/objetivo')->with('status', '¡Objetivo registrado!');
     }
 
     /**
@@ -77,7 +109,8 @@ class ObjetivoController extends Controller
         //
     }
 
-    public function update_consumo(Request $request, Objetivo $objetivo){
+    public function update_consumo(Request $request, Objetivo $objetivo)
+    {
 
         ConsumosObjetivo::where('id_objetivo', $objetivo->id)->update([
             'oxigeno' => $request->oxigeno,
@@ -96,11 +129,30 @@ class ObjetivoController extends Controller
             $array_totales[$recurso] = $consumos->sum($recurso);
         }
 
+        //CREAR UNA NOTIFICACION POR OBJETIVO Y RECURSO
+
         foreach ($array_totales as $recurso => $valor) {
-            if($valor >= $recursos_disp->$recurso){
-                //notificaciones
+            $alerta = Alerta::where('id_objetivo', $objetivo->id)->where('recurso', $recurso)->first();
+            if ($valor >= $recursos_disp->$recurso) {
+                $alarma = new Alarma($objetivo->id, $recurso);
+                Tripulante::find(Auth::user()->id)->notify($alarma);
+
+                if ($alerta == null) {
+                    Alerta::create([
+                        'id_sector' => $objetivo->id_sector,
+                        'recurso' => $recurso,
+                        'id_objetivo' => $objetivo->id,
+                        'mensaje' => 'La falta de ' . $recurso . ' supone un gran riesgo para la tripulación.'
+                    ]);
+                }
+            } else {
+                if ($alerta != null) {
+                    $alerta->where('recurso', $recurso)->delete();
+                }
             }
         }
+
+        return back();
     }
 
     /**
@@ -120,7 +172,8 @@ class ObjetivoController extends Controller
     {
         $recursos = Recurso::first();
         $requisitos = RequisitosObjetivo::where('id_objetivo', $objetivo->id)->first();
+        $alertas = Alerta::where('id_objetivo', $objetivo->id)->get();
         //dd($requisitos);
-        return view('dashboard.objetivo.gestion', compact('objetivo', 'recursos', 'requisitos'));
+        return view('dashboard.objetivo.gestion', compact('objetivo', 'recursos', 'requisitos', 'alertas'));
     }
 }

@@ -17019,3 +17019,7 @@ readers do not read off random characters that represent icons */
   border-radius: 5px;
 }
 
+.navbar-nav .dropdown-menu {
+  position: absolute !important;
+}
+

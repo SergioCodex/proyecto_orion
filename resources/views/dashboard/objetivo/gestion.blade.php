@@ -22,7 +22,7 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                 <div class="col-10 ml-3">
                     <p><span class="font-weight-bold">Sector:</span> {{ $objetivo->sector->nombre}} <br>
                         <span class="font-weight-bold">Objetivo: </span>{{ $objetivo->titulo}}
-                        <br><span class="font-weight-bold">Descripción:</span> {{ $objetivo->descripcion}}</p>
+                        <br><span class="font-weight-bold">Descripción:</span> </p> <div class="tarjeta shadow-sm p-3 mb-3">{!! $objetivo->descripcion !!}</div>
                 </div>
             </div>
             <div class="row">
@@ -40,7 +40,7 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                         <span class="font-weight-bold">Energía:</span> <br>
                         <span class="font-weight-bold">Combustible:</span> <br>
                         <span class="font-weight-bold">Agua:</span> <br>
-                        <span class="font-weight-bold">Alimento:</span> 
+                        <span class="font-weight-bold">Alimento:</span>
                 </div>
                 <div class="col-5">
                     {{ $requisitos->oxigeno}} ud. <br>
@@ -65,25 +65,6 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
     </div>
     <div class="col-4">
         <div class="tarjeta p-4 shadow-sm">
-            <div class="row p-1 justify-content-start">
-                <div class="col-auto mt-2">
-                    <span class="text-muted">Status Ticket:</span>
-                </div>
-                <div class="col-auto">
-                </div>
-            </div>
-            <div class="row p-1">
-                <div class="col-auto">
-                    <span class="text-muted">Prioridad:</span> <span class="ml-2"></span>
-                </div>
-            </div>
-            <div class="row p-1">
-                <div class="col-auto">
-                    <span class="text-muted">Agente:</span> <span class="ml-2"></span>
-                </div>
-            </div>
-        </div>
-        <div class="tarjeta p-4 shadow-sm mt-3">
             <div class="row mb-3">
                 <div class="col-auto lead">
                     Detalles
@@ -91,22 +72,33 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
             </div>
             <div class="row p-1">
                 <div class="col-auto">
-                    <span class="text-muted">ID Ticket:</span> <span class="ml-2"></span>
+                    <span class="text-muted">ID Objetivo:</span> <span class="ml-2">{{ $objetivo->id }}</span>
                 </div>
             </div>
             <div class="row p-1">
                 <div class="col-auto">
-                    <span class="text-muted">Creado en:</span> <span class="ml-2"></span>
+                    <span class="text-muted">Creado en:</span> <span class="ml-2">
+                        {{ $objetivo->created_at->format('d-m-Y')}}</span>
                 </div>
             </div>
             <div class="row p-1">
                 <div class="col-auto">
-                    <span class="text-muted">Actualizado en:</span> <span class="ml-2"></span>
+                    <span class="text-muted">Actualizado en:</span> <span
+                        class="ml-2">{{ $objetivo->updated_at->format('d-m-Y')}}</span>
                 </div>
             </div>
             <div class="row p-1">
-                <div class="col-auto">
-                    <span class="text-muted">Respuestas:</span> <span class="ml-2"></span>
+                <div class="col-12">
+                    <span class="text-muted">Alertas:</span>
+                    @if ($alertas->count() > 0)
+                    @foreach ($alertas as $alerta)
+                    <br> - <span class="ml-2">{{ $alerta->mensaje }}</span>
+                    @endforeach
+                    @else
+                    <span class="ml-2">No hay alertas <i class="text-success fa fa-smile-beam ml-2"></i>
+                    </span>
+                    @endif
+                    
                 </div>
             </div>
         </div>
@@ -150,9 +142,9 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                     </div>
                     <div class="col-2">
                         <div class="tarjeta-recursos text-center shadow-sm">
-                        <output class="text-success" name="energiaOutputName"
-                            id="energiaOutputId">{{$objetivo->consumos_objetivo->energia }}</output> /
-                        {{ $requisitos->energia }}
+                            <output class="text-success" name="energiaOutputName"
+                                id="energiaOutputId">{{$objetivo->consumos_objetivo->energia }}</output> /
+                            {{ $requisitos->energia }}
                         </div>
                     </div>
                     <div id="alarma-energia"></div>
@@ -162,23 +154,23 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                 <label for="combustibleRange">Combustible <i class="fa fa-gas-pump ml-1"></i></label>
                 <div class="row justify-content-center">
                     <div class="col-10 mt-2">
-                        <input type="range" name="combustible" class="custom-range" min="0" max="{{ $recursos->combustible }}"
-                            value="{{ $objetivo->consumos_objetivo->combustible }}"
+                        <input type="range" name="combustible" class="custom-range" min="0"
+                            max="{{ $recursos->combustible }}" value="{{ $objetivo->consumos_objetivo->combustible }}"
                             data-requisito="{{ $requisitos->combustible }}" step="1000" id="combustibleRange"
                             oninput="combustibleOutputId.value = combustibleRange.value">
                     </div>
                     <div class="col-2">
                         <div class="tarjeta-recursos text-center shadow-sm">
                             <output class="text-success" name="combustibleOutputName"
-                            id="combustibleOutputId">{{ $objetivo->consumos_objetivo->combustible }}</output>
-                        /
-                        {{ $requisitos->combustible }}
+                                id="combustibleOutputId">{{ $objetivo->consumos_objetivo->combustible }}</output>
+                            /
+                            {{ $requisitos->combustible }}
                         </div>
                     </div>
                     <div id="alarma-combustible"></div>
                 </div>
                 <hr>
-                
+
                 <label for="aguaRange">Agua <i class="fa fa-tint ml-1"></i></label>
                 <div class="row justify-content-center">
                     <div class="col-10 mt-2">
@@ -189,9 +181,9 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                     <div class="col-2">
                         <div class="tarjeta-recursos text-center shadow-sm">
                             <output class="text-success" name="aguaOutputName"
-                            id="aguaOutputId">{{$objetivo->consumos_objetivo->agua}}</output>
-                        /
-                        {{ $requisitos->agua }}
+                                id="aguaOutputId">{{$objetivo->consumos_objetivo->agua}}</output>
+                            /
+                            {{ $requisitos->agua }}
                         </div>
                     </div>
                     <div id="alarma-agua"></div>
@@ -208,16 +200,17 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                     </div>
                     <div class="col-2">
                         <div class="tarjeta-recursos text-center shadow-sm">
-                        <output class="text-success" name="alimentoOutputName"
-                            id="alimentoOutputId">{{$objetivo->consumos_objetivo->alimento }}</output> /
-                        {{ $requisitos->agua }}
+                            <output class="text-success" name="alimentoOutputName"
+                                id="alimentoOutputId">{{$objetivo->consumos_objetivo->alimento }}</output> /
+                            {{ $requisitos->agua }}
                         </div>
                     </div>
                     <div id="alarma-alimento"></div>
                 </div>
                 <div class="row mt-4">
                     <div class="col-12">
-                        <button type="submit" name="" id="enviar_recursos" class="btn btn-warning btn-block shadow mt-2">Administrar</button>
+                        <button type="submit" name="" id="enviar_recursos"
+                            class="btn btn-warning btn-block shadow mt-2">Administrar</button>
                     </div>
                 </div>
             </form>

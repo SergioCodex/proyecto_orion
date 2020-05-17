@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Objetivo extends Model
 {
-    protected $fillable = ['titulo', 'descripcion', 'id_sector', 'id_requisitos'];
+    protected $fillable = ['titulo', 'descripcion', 'id_sector', 'id_requisitos', 'id_consumo'];
 
     public function sector(){
         return $this->belongsTo(Sector::class, 'id_sector', 'id');

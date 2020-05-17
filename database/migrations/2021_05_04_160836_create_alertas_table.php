@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAlarmasTable extends Migration
+class CreateAlertaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateAlarmasTable extends Migration
      */
     public function up()
     {
-        Schema::create('alarmas', function (Blueprint $table) {
+        Schema::create('alertas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_tipo_alarma')->unsigned();
+            $table->string('recurso');
+            $table->bigInteger('id_sector')->unsigned();
+            $table->bigInteger('id_objetivo')->unsigned();
             $table->string('mensaje');
             $table->timestamps();
 
-            $table->foreign('id_tipo_alarma')->references('id')->on('tipos_alarmas');
         });
     }
 
@@ -30,6 +31,6 @@ class CreateAlarmasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alarmas');
+        Schema::dropIfExists('alertas');
     }
 }

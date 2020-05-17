@@ -1,5 +1,5 @@
 <nav id="sidebar" class="order-last img shadow-sm"
-    style="background-image: url({{ asset('storage/images/bg_' . random_int(1,2) . '.jpg') }}); border-left: 2px solid #f3f3f3">
+    style="background-image: url({{ asset('storage/images/bg_' . random_int(1,2) . '.jpg') }}); border-left: 2px solid #f3f3f3; z-index:20">
     <div class="custom-menu">
         <button type="button" id="sidebarCollapse" class="btn btn-secondary">
             <i class="fas fa-arrow-right text-white"></i>
@@ -28,7 +28,7 @@
                 <h5 class="ml-4 text-light pb-3" style="border-bottom: 1px solid white">Gestión</h5>
             </div>
             <li class="submenu-nav">
-                <a href="#"><span class="fa fa-sticky-note mr-3"></span> Datos</a>
+                <a href="{{ route('alerta.index')}}"><span class="fa fa-sticky-note mr-3"></span> Alertas</a>
             </li>
             <li class="submenu-nav">
                 <a href="{{ route('objetivo.index')}}"><span class="fa fa-tasks mr-3"></span> Objetivos</a>

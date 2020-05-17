@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequisitosObjetivosTable extends Migration
+class CreateConsumosObjetivosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRequisitosObjetivosTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisitos_objetivos', function (Blueprint $table) {
+        Schema::create('consumos_objetivos', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_objetivo')->unsigned();
             $table->double('oxigeno')->nullable();
@@ -34,6 +34,6 @@ class CreateRequisitosObjetivosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requisitos_objetivos');
+        Schema::dropIfExists('consumos_objetivos');
     }
 }

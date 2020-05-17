@@ -21,6 +21,7 @@ Route::resource('dashboard/tripulante', 'dashboard\TripulanteController');
 Route::resource('dashboard/incidencia', 'dashboard\IncidenciaController');
 Route::resource('dashboard/recurso', 'dashboard\RecursoController');
 Route::resource('dashboard/objetivo', 'dashboard\ObjetivoController');
+Route::resource('dashboard/alerta', 'dashboard\AlertaController');
 
 Auth::routes();
 
@@ -36,3 +37,6 @@ Route::put('/incidencia/update-status/{incidencia}', 'dashboard\IncidenciaContro
 
 Route::get('/objetivo/{objetivo}/gestion', 'dashboard\ObjetivoController@gestion')->name('objetivo.gestion');
 Route::put('/objetivo/{objetivo}/update-consumo', 'dashboard\ObjetivoController@update_consumo')->name('objetivo.update-consumo');
+
+
+Route::get('marcarLeido', 'dashboard\NotificacionController@marcarLeido')->name('marcarleido');
