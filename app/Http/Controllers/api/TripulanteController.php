@@ -23,10 +23,16 @@ class TripulanteController extends ApiResponseController
 
     public function tripulantePorMes()
     {
-        $mayo_trip = DB::table('tripulantes')->whereMonth('created_at', '05')->get()->count();
-        $junio_trip = DB::table('tripulantes')->whereMonth('created_at', '06')->get()->count();
         
-        return $this->successResponse([$mayo_trip, $junio_trip]);
+        $meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+        $array_num_tripulantes_mes = [];
+
+        foreach ($meses as $key => $value) {
+            $mes = $key + 1;
+            $array_num_tripulantes_mes[$value] = DB::table('tripulantes')->whereMonth('created_at', $mes)->get()->count();
+        }
+        
+        return $this->successResponse($array_num_tripulantes_mes);
     }
 
     /**

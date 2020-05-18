@@ -62,7 +62,7 @@ Dashboard [Tripulante]
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary btn-lg btn-block mt-3 shadow-sm">Botón</button>
+        {{-- <button class="btn btn-primary btn-lg btn-block mt-3 shadow-sm">Botón</button> --}}
     </div>
     <div class="col-3" style="margin-top: 50px">
         <div class="tarjeta shadow-sm" style="height: 100px">
@@ -97,7 +97,7 @@ Dashboard [Tripulante]
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary btn-lg btn-block mt-3 shadow-sm">Botón</button>
+        {{-- <button class="btn btn-primary btn-lg btn-block mt-3 shadow-sm">Botón</button> --}}
     </div>
 </div>
 {{-- <div class="row mt-4">
@@ -209,8 +209,6 @@ Dashboard [Tripulante]
     fetch('/api/tripulante/mes')
         .then(resp => resp.json())
         .then(json => {
-            var mayo = json.data[0];
-            var junio = json.data[1];
 
             var optionsBar = {
                 responsive: true,
@@ -233,7 +231,7 @@ Dashboard [Tripulante]
                     backgroundColor: "#98FFC588",
                     borderColor: "#98FFC5FF",
                     borderWidth: 3,
-                    data: [0, 0, 0, 0, mayo, junio]
+                    data: [json.data['enero'], json.data['febrero'], json.data['marzo'], json.data['abril'], json.data['mayo'], json.data['junio'], json.data['julio'], json.data['agosto'], json.data['septiembre'], json.data['octubre'], json.data['noviembre'], json.data['diciembre']]
                 }
                 ]
             }

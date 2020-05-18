@@ -17023,3 +17023,15 @@ readers do not read off random characters that represent icons */
   position: absolute !important;
 }
 
+.title-login {
+  padding: 20px;
+  font-family: "Monda", sans-serif;
+  font-size: 30px;
+  color: #5555a7;
+}
+
+.text-login {
+  font-family: "News Cycle", sans-serif;
+  font-size: 15px;
+}
+
