@@ -22,7 +22,8 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                 <div class="col-10 ml-3">
                     <p><span class="font-weight-bold">Sector:</span> {{ $objetivo->sector->nombre}} <br>
                         <span class="font-weight-bold">Objetivo: </span>{{ $objetivo->titulo}}
-                        <br><span class="font-weight-bold">Descripción:</span> </p> <div class="tarjeta shadow-sm p-3 mb-3">{!! $objetivo->descripcion !!}</div>
+                        <br><span class="font-weight-bold">Descripción:</span> </p>
+                    <div class="tarjeta shadow-sm p-3 mb-3">{!! $objetivo->descripcion !!}</div>
                 </div>
             </div>
             <div class="row">
@@ -92,13 +93,17 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                     <span class="text-muted">Alertas:</span>
                     @if ($alertas->count() > 0)
                     @foreach ($alertas as $alerta)
-                    <br> - <span class="ml-2">{{ $alerta->mensaje }}</span>
+                    <div class="row">
+                        <div class="col-12 mt-4 mb-2">
+                            <span class="ml-2 alert alert-danger"><small>{{ $alerta->mensaje }}</small></span>
+                        </div>
+                    </div>
                     @endforeach
                     @else
                     <span class="ml-2">No hay alertas <i class="text-success fa fa-smile-beam ml-2"></i>
                     </span>
                     @endif
-                    
+
                 </div>
             </div>
         </div>
@@ -263,6 +268,11 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
             }
 
             console.log(alarma);
+            if(alarma.length == 0){
+                $("#enviar_recursos").prop('disabled', false);
+            } else {
+                $("#enviar_recursos").prop('disabled', true);
+            }
 
         }
 
@@ -280,6 +290,12 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
             }
             
         });
+
+        if(alarma.length == 0){
+                $("#enviar_recursos").prop('disabled', false);
+            } else {
+                $("#enviar_recursos").prop('disabled', true);
+            }
 
         $("#oxigenoRange").change(function(){
             requisito_oxigeno = $("#oxigenoRange").data('requisito');
@@ -307,6 +323,7 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
             alarma_recurso(requisito_alimento, 'alimento');
         });
 
+        
 
     }
 </script>

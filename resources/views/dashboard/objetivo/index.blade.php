@@ -38,10 +38,8 @@ Dashboard [Objetivos]
             <tbody>
                 @foreach ($objetivos as $objetivo)
 
-                @if ($objetivo->status == 'Resuelto')
-                <tr class="table-success" style="background-color: rgb(243, 248, 255)">
-                    @elseif($objetivo->status == "Abierto")
-                <tr class="table-info" style="background-color: rgb(243, 248, 255)">
+                @if (in_array($objetivo->id, $array_alertas))
+                <tr class="table-danger" style="background-color: rgb(243, 248, 255)">
                     @else
                 <tr style="background-color: rgb(243, 248, 255)">
                     @endif

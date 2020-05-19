@@ -24,8 +24,15 @@ class ObjetivoController extends Controller
      */
     public function index()
     {
+        $alertas = Alerta::select('id_objetivo')->get();
+        $array_alertas = [];
+
+        foreach ($alertas as $alerta) {
+            $array_alertas[] = $alerta->id_objetivo;
+        }
+
         $objetivos = Objetivo::with(['sector'])->orderBy('created_at', 'DESC')->paginate(15);
-        return view('dashboard.objetivo.index', compact('objetivos'));
+        return view('dashboard.objetivo.index', compact('objetivos', 'array_alertas'));
     }
 
     /**

@@ -24,5 +24,5 @@ Route::resource('tripulante', 'api\TripulanteController')->only([
     'index', 'show'
 ]);
 
-Route::get('recurso/oxigeno', 'api\RecursoController@oxigeno_total');
+Route::get('recurso/consumos', 'api\RecursoController@consumos');
 

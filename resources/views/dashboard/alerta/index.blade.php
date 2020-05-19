@@ -32,25 +32,16 @@ Dashboard [Alertas]
             </thead>
             <tbody>
                 @foreach ($alertas as $alerta)
-
-                @if ($alerta->status == 'Resuelto')
-                <tr class="table-success" style="background-color: rgb(243, 248, 255)">
-                    @elseif($alerta->status == "Abierto")
-                <tr class="table-info" style="background-color: rgb(243, 248, 255)">
-                    @else
-                <tr style="background-color: rgb(243, 248, 255)">
-                    @endif
-
+                    <tr class="table-warning" style="background-color: rgb(243, 248, 255)">
                     <td class="font-italic">{{ $alerta->id }}</td>
                     <td class="">{{ $alerta->recurso }}</td>
                     <td>{{ $alerta->sector->nombre }}</td>
-                    <td>{{ $alerta->objetivo->titutlo }}</td>
+                    <td>{{ $alerta->objetivo->titulo }}</td>
+                    <td>{{ $alerta->mensaje }}</td>
                     <td>{{ $alerta->created_at->format('d-m-Y') }}</td>
-                    <td style="width: 62px;">
-                        <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $alerta->id }}"
-                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                        <a href="{{ route('alerta.gestion', $alerta->id) }}" class="btn btn-success btn-sm"><i
-                                class="fa fa-hammer"></i></a>
+                    <td>
+                        <a href="{{ route('objetivo.gestion', $alerta->id_objetivo)}}"
+                            class="btn btn-success btn-block btn-sm"><i class="fa fa-eye"></i></a>
                     </td>
                 </tr>
                 @endforeach

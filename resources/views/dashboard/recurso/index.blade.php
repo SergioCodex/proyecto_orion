@@ -1,7 +1,7 @@
 @extends('dashboard.master')
 
 @section('title')
-    Dashboard [Recursos]
+Dashboard [Recursos]
 @endsection
 
 @section('content')
@@ -47,21 +47,86 @@
 
     window.onload = function(){
 
-        //fetch('/api/recurso/oxigeno').then(resp => resp.json()).then(json => {
+        fetch('/api/recurso/consumos').then(resp => resp.json()).then(json => {
 
-            //var total_oxigeno = json.data[0];
+            var consumos = json.data[0];
+            var recursos = json.data[1];
+
+            var columnas = [];
+
+            consumos.forEach(objetivo => {
+                columnas.push('Obj. #' + objetivo.id_objetivo);
+            });
+
+            var consumos_oxigenos = [];
+            var consumos_energia = [];
+            var consumos_combustible = [];
+            var consumos_agua = [];
+            var consumos_alimento = [];
+
+            consumos.forEach(objetivo => {
+                consumos_oxigenos.push(objetivo.oxigeno);
+                consumos_energia.push(objetivo.energia);
+                consumos_combustible.push(objetivo.combustible);
+                consumos_agua.push(objetivo.agua);
+                consumos_alimento.push(objetivo.alimento);
+            });
+
+            columnas.push('Recurso sin usar');
+
+            //oxigeno
+
+            consumos_oxigenos.forEach(valor => {
+                recursos[0].oxigeno -= valor;
+            });
+
+            consumos_oxigenos.push(recursos[0].oxigeno);
+
+            //energia
+
+            consumos_energia.forEach(valor => {
+                recursos[0].energia -= valor;
+            });
+
+            consumos_energia.push(recursos[0].energia);
+
+            //combustible
+
+            consumos_combustible.forEach(valor => {
+                recursos[0].combustible -= valor;
+            });
+
+            consumos_combustible.push(recursos[0].combustible);
+
+            //agua
+
+            consumos_agua.forEach(valor => {
+                recursos[0].agua -= valor;
+            });
+
+            consumos_agua.push(recursos[0].agua);
+
+            //alimento
+
+            consumos_alimento.forEach(valor => {
+                recursos[0].alimento -= valor;
+            });
+
+            consumos_alimento.push(recursos[0].alimento);
+            
 
         //Oxígeno
             var data = {
-                labels: ['Consumido', 'Sin usar'],
+                labels: columnas,
                 datasets: [
                         {
-                            data: [90, 10],
+                            data: consumos_oxigenos,
                             backgroundColor: [
                                 "#98FFC588", 
-                                "#D5FF6488"
+                                "#D5FF6488",
+                                "#D5FF1088"
                             ],
-                            hoverBackgroundColor: ['#98FFC5FF', '#D5FF64FF'],
+                            hoverBackgroundColor: ['#98FFC5FF', '#D5FF64FF', "#D5FF10FF"],
                             borderWidth: 3,
                             weight: 1
                         }]
@@ -83,15 +148,16 @@
 
         //Energía
         var data = {
-            labels: ['Consumido', 'Sin usar'],
+            labels: columnas,
             datasets: [
                     {
-                        data: [30, 40],
+                        data: consumos_energia,
                         backgroundColor: [
                             "#FFFF8188", 
-                            "#FFC28188"
+                            "#FFC28188",
+                            "#FFC00188"
                         ],
-                        hoverBackgroundColor: ['#FFFF81FF', '#FFC281FF'],
+                        hoverBackgroundColor: ['#FFFF81FF', '#FFC281FF', "#FFC061FF"],
                         borderWidth: 3,
                         weight: 1
                     }]
@@ -109,15 +175,16 @@
 
         //Combustible
         var data = {
-            labels: ['Consumido', 'Sin usar'],
+            labels: columnas,
             datasets: [
                     {
-                        data: [84, 16],
+                        data: consumos_combustible,
                         backgroundColor: [
-                            "#C7C7C788", 
-                            "#A7A7A788"
+                            "#C7C90788", 
+                            "#A7A80788",
+                            "#A7A50788"
                         ],
-                        hoverBackgroundColor: ['#C7C7C7FF', '#A7A7A7FF'],
+                        hoverBackgroundColor: ['#C7C7C7FF', '#A7A7A7FF', "#A7A507FF"],
                         borderWidth: 3,
                         weight: 1
                     }]
@@ -135,15 +202,16 @@
 
         //Agua
         var data = {
-            labels: ['Consumido', 'Sin usar'],
+            labels: columnas,
             datasets: [
                     {
-                        data: [84, 16],
+                        data: consumos_agua,
                         backgroundColor: [
                             "#85FBFF88", 
-                            "#85C8FF88"
+                            "#85C8FF88",
+                            "#8599FF88"
                         ],
-                        hoverBackgroundColor: ['#85FBFFFF', '#85C8FFFF'],
+                        hoverBackgroundColor: ['#85FBFFFF', '#85C8FFFF',"#8599FFFF"],
                         borderWidth: 3,
                         weight: 1
                     }]
@@ -161,15 +229,16 @@
 
         //Comida
         var data = {
-            labels: ['Consumido', 'Sin usar'],
+            labels: columnas,
             datasets: [
                     {
-                        data: [40, 60],
+                        data: consumos_alimento,
                         backgroundColor: [
                             "#FF618288", 
-                            "#FF275488"
+                            "#FF275488",
+                            "#F0005488"
                         ],
-                        hoverBackgroundColor: ['#FF6182FF', '#FF2754FF'],
+                        hoverBackgroundColor: ['#FF6182FF', '#FF2754FF', "#FF2454FF"],
                         borderWidth: 3,
                         weight: 1
                     }]
@@ -184,6 +253,8 @@
                 maintainAspectRatio : false
             }
         });
+    });
+        
 }
 </script>
 @endsection

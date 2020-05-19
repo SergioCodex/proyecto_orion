@@ -11,4 +11,8 @@ class Alerta extends Model
     public function sector(){
         return $this->belongsTo(Sector::class, 'id_sector', 'id');
     }
+
+    public function objetivo(){
+        return $this->belongsTo(Objetivo::class, 'id_objetivo', 'id');
+    }
 }

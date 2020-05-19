@@ -36,9 +36,6 @@
             <li class="submenu-nav">
                 <a href="{{ route('recurso.index')}}"><span class="fa fa-cogs mr-3"></span> Recursos</a>
             </li>
-            <li class="submenu-nav">
-                <a href="#"><span class="fa fa-paper-plane mr-3"></span> Mensajería</a>
-            </li>
 
             <div class="mt-3">
                 <ul class="list-unstyled components mb-5">
