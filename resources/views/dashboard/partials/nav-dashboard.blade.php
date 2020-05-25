@@ -1,5 +1,5 @@
 <nav id="sidebar" class="order-last img shadow-sm"
-    style="background-image: url({{ asset('storage/images/bg_' . random_int(1,2) . '.jpg') }}); border-left: 2px solid #f3f3f3; z-index:20">
+    style="background-image: url({{ asset('/storage/images/bg_' . random_int(1,2) . '.jpg') }}); border-left: 2px solid #f3f3f3; z-index:20">
     <div class="custom-menu">
         <button type="button" id="sidebarCollapse" class="btn btn-secondary">
             <i class="fas fa-arrow-right text-white"></i>
