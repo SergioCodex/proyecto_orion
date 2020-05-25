@@ -5,11 +5,13 @@ namespace App\Http\Controllers\dashboard;
 use App\Notas;
 use App\Sector;
 use App\Incidencia;
+use App\Tripulante;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Requests\StoreIncidenciaPost;
+use App\Http\Requests\UpdateIncidenciaPut;
 
 class IncidenciaController extends Controller
 {
@@ -60,7 +62,7 @@ class IncidenciaController extends Controller
             'titulo' => $request->titulo,
             'descripcion' => $request->descripcion,
             'id_comunicador' => Auth::user()->id,
-            'id_sector_origen' => $request->id_sector,
+            'id_sector_origen' => $request->id_sector_origen,
         ]);
 
         return redirect('dashboard/incidencia')->with('status', '¡Ticket generado!');
@@ -86,7 +88,12 @@ class IncidenciaController extends Controller
      */
     public function edit($id)
     {
-        return "edit";
+        $incidencia = Incidencia::findOrFail($id);
+        $sectores = Sector::get();
+        $agentes = Tripulante::where('id_rol', '>', 1)->get();
+        //dd($incidencia->id_sector_origen);
+
+        return view('dashboard.incidencia.edit', compact('incidencia', 'sectores', 'agentes'));
     }
 
     /**
@@ -96,9 +103,12 @@ class IncidenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateIncidenciaPut $request, $id)
     {
-        //
+        $incidencia = Incidencia::findOrFail($id);
+        $incidencia->update($request->validated());
+
+        return redirect('dashboard/incidencia')->with('status', '¡Ticket ' . $incidencia->id . ' actualizado!');
     }
 
     /**

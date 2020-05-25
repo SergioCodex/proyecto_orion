@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreIncidenciaPost extends FormRequest
+class UpdateIncidenciaPut extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,8 @@ class StoreIncidenciaPost extends FormRequest
         return [
             'titulo' => 'required',
             'descripcion' => 'required',
-            'id_sector_origen' => 'required',
+            'id_agente' => 'required',
+            'id_sector_origen' => 'required'
         ];
     }
 }

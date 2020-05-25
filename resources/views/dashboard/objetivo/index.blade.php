@@ -21,6 +21,13 @@ Dashboard [Objetivos]
                 class="fa fa-plus mr-1"></i>Registrar objetivo</a>
     </div>
 </div>
+<div class="row">
+    <div class="col-12">
+        <div class="nota-info p-2">
+            <div class="ml-2">No se recomienda tener más de 15 objetivos simultáneos, manten la atención en los recursos y cuida el bien común de la nave.</div> 
+        </div>
+    </div>
+</div>
 <div class="row mt-3">
     <div class="col-12">
         <table id="tabla_datatable" class="table table-hover table-bordered shadow"

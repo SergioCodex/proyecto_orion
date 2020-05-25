@@ -13,9 +13,18 @@
         <h5><label for="id_sector_origen">Sector</label></h5>
         <select name="id_sector_origen" class="form-control">
             @foreach ($sectores as $sector)
-            <option value="{{ $sector->id }}">{{ $sector->nombre }}</option>
+            <option {{ $incidencia->id_sector_origen == $sector->id ? 'selected="selected"' : '' }} value="{{ $sector->id }}">{{ $sector->nombre }}</option>
             @endforeach
-
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-12 mb-12">
+        <h5><label for="id_agente">Agente</label></h5>
+        <select name="id_agente" class="form-control">
+            @foreach ($agentes as $agente)
+            <option {{ $incidencia->id_agente == $agente->id ? 'selected="selected"' : '' }} value="{{ $agente->id }}">{{ $agente->name }}</option>
+            @endforeach
         </select>
     </div>
 </div>
@@ -26,4 +35,5 @@
             placeholder="Describa su pobrema...">{{ old('descripcion', $incidencia->descripcion  ?? '') }}</textarea>
     </div>
 </div>
+
 <input type="submit" class="btn btn-lg btn-primary float-right mr-3" value="Enviar">

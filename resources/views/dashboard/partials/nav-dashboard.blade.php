@@ -26,15 +26,15 @@
             </li>
             <div class="mt-3 mb-2">
                 <h5 class="ml-4 text-light pb-3" style="border-bottom: 1px solid white">Gestión</h5>
-            </div>
-            <li class="submenu-nav">
-                <a href="{{ route('alerta.index')}}"><span class="fa fa-sticky-note mr-3"></span> Alertas</a>
-            </li>
+            </div>  
             <li class="submenu-nav">
                 <a href="{{ route('objetivo.index')}}"><span class="fa fa-tasks mr-3"></span> Objetivos</a>
             </li>
             <li class="submenu-nav">
                 <a href="{{ route('recurso.index')}}"><span class="fa fa-cogs mr-3"></span> Recursos</a>
+            </li>
+            <li class="submenu-nav">
+                <a href="{{ route('alerta.index')}}"><span class="fa fa-exclamation-circle mr-3"></span> Alertas</a>
             </li>
 
             <div class="mt-3">
