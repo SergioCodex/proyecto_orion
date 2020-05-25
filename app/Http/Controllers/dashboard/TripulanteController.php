@@ -18,7 +18,7 @@ class TripulanteController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin']);
     }
 
     /**
@@ -33,7 +33,7 @@ class TripulanteController extends Controller
         $chart->labels(['One', 'Two', 'Three']);
         $chart->dataset('Número', 'line', [1, 2, 1])->color('rbga(203,100,84,1)')->backgroundColor('rgba(152,255,242,0.6)');
 
-        $tripulantes = Tripulante::with('rol')->paginate(10);
+        $tripulantes = Tripulante::with('rol')->get();
         $n_tripulantes = Tripulante::get()->count();
         $n_operarios = Tripulante::where('id_rol', 1)->count();
         $n_superiores = Tripulante::where('id_rol', 2)->count();

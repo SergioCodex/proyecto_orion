@@ -50012,6 +50012,7 @@ var app = new Vue({
         _this.id_sector = 1;
         _this.email = null;
         _this.password = null, _this.errors = [], $('#creacion').modal('hide');
+        location.reload();
       })["catch"](function (error) {
         _this.errors = [];
 
@@ -50026,14 +50027,13 @@ var app = new Vue({
         if (!_this.email) {
           _this.errors.push('El correo electrónico es obligatorio.');
         } else if (!_this.validEmail(_this.email)) {
-          _this.errors.push('El correo electrónico debe ser válido.');
+          _this.errors.push('El correo electrónico debe ser válido y único.');
         }
 
         if (!_this.password) {
           _this.errors.push("La contraseña es obligatoria");
-        }
+        } //this.errors.push(error);
 
-        _this.errors.push(error);
       });
     },
     validEmail: function validEmail(email) {

@@ -133,11 +133,6 @@ Incidencia Nº {{ $incidencia->id }}
             </div>
             <div class="row p-1">
                 <div class="col-auto">
-                    <span class="text-muted">Prioridad:</span> <span class="ml-2"></span>
-                </div>
-            </div>
-            <div class="row p-1">
-                <div class="col-auto">
                     <span class="text-muted">Agente:</span> <span class="ml-2">{{ $incidencia->agente->name }}</span>
                 </div>
             </div>

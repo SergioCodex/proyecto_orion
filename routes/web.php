@@ -23,6 +23,8 @@ Route::resource('dashboard/recurso', 'dashboard\RecursoController');
 Route::resource('dashboard/objetivo', 'dashboard\ObjetivoController');
 Route::resource('dashboard/alerta', 'dashboard\AlertaController');
 
+Route::resource('user/dashboard', 'userDashboard\UserController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

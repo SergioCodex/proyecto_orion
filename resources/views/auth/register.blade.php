@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="apellidos" class="col-md-4 col-form-label text-md-right">apellidos</label>
+                            <label for="apellidos" class="col-md-4 col-form-label text-md-right">Apellidos</label>
 
                             <div class="col-md-6">
                                 <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{ old('apellidos') }}" required autocomplete="apellidos" autofocus>

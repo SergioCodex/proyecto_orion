@@ -14,6 +14,7 @@ $tripulante = Tripulante::find(Auth::user()->id)
             <span class="navbar-brand mb-0"> <i class="fa fa-user mr-2"></i> <span class="text-secondary">Hey,</span>
                 {{Auth::user()->name}}</span>
         </div>
+        @if (Auth::user()->id_rol > 1)
         <div class="col-4">
             <ul class="navbar-nav ml-auto nav-flex-icons">
                 <li class="nav-item avatar dropdown">
@@ -49,5 +50,6 @@ $tripulante = Tripulante::find(Auth::user()->id)
                 </li>
             </ul>
         </div>
+        @endif
     </div>
 </nav>

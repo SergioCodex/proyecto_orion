@@ -1,16 +1,17 @@
 <nav id="sidebar" class="order-last img shadow-sm"
-    style="background-image: url({{ asset('/storage/images/bg_' . random_int(1,2) . '.jpg') }}); border-left: 2px solid #f3f3f3; z-index:20">
+    style="background-image: url({{asset('/storage/images/bg_' . random_int(1,2) . '.jpg')}}); border-left: 2px solid #f3f3f3; z-index:20">
     <div class="custom-menu">
         <button type="button" id="sidebarCollapse" class="btn btn-secondary">
             <i class="fas fa-arrow-right text-white"></i>
         </button>
     </div>
     <div class="mt-3">
-        <h1><a href="dashboard/" class="logo">Proyecto Orion <span>Space Admin</span></a></h1>
-
-        @if (Auth::check())
+        <h1><a href="/" class="logo">Proyecto Orion <span>Space Admin</span></a></h1>
 
         <ul class="list-unstyled components mb-5 mt-5">
+
+            @if (Auth::check() && Auth::user()->id_rol > 1)
+
             <li class="active submenu-nav">
                 <a href="/"><span class="fa fa-home mr-3"></span> Home</a>
             </li>
@@ -26,7 +27,7 @@
             </li>
             <div class="mt-3 mb-2">
                 <h5 class="ml-4 text-light pb-3" style="border-bottom: 1px solid white">Gestión</h5>
-            </div>  
+            </div>
             <li class="submenu-nav">
                 <a href="{{ route('objetivo.index')}}"><span class="fa fa-tasks mr-3"></span> Objetivos</a>
             </li>
@@ -37,19 +38,31 @@
                 <a href="{{ route('alerta.index')}}"><span class="fa fa-exclamation-circle mr-3"></span> Alertas</a>
             </li>
 
-            <div class="mt-3">
-                <ul class="list-unstyled components mb-5">
-                    <li>
-                        <a href="#" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"><span class="fa fa-sign-out-alt mr-3"></span>
-                            Logout</a>
-                    </li>
-                </ul>
+            
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+            @elseif(Auth::check() && Auth::user()->id_rol == 1)
+
+            <li class="active submenu-nav">
+                <a href="/"><span class="fa fa-home mr-3"></span> Home</a>
+            </li>
+
+            <div class="mt-3 mb-2">
+                <h5 class="ml-4 text-light pb-3" style="border-bottom: 1px solid white">Información</h5>
             </div>
+            <li class="submenu-nav">
+                <a href="#"><span class="fa fa-user mr-3"></span> Tripulante</a>
+            </li>
+            <li class="submenu-nav">
+                <a href="#"><span class="fa fa-thumbtack mr-3"></span>
+                    Horario</a>
+            </li>
+            <div class="mt-3 mb-2">
+                <h5 class="ml-4 text-light pb-3" style="border-bottom: 1px solid white">Soporte</h5>
+            </div>
+            <li class="submenu-nav">
+                <a href="#"><span class="fa fa-exclamation-triangle mr-3"></span>
+                    Incidencia</a>
+            </li>
 
             @else
 
@@ -64,6 +77,20 @@
                 </ul>
             </div>
             @endif
+
+            <div class="mt-3">
+                <ul class="list-unstyled components mb-5">
+                    <li>
+                        <a href="#" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"><span class="fa fa-sign-out-alt mr-3"></span>
+                            Logout</a>
+                    </li>
+                </ul>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
         </ul>
 
         <div class="mb-5 px-4">

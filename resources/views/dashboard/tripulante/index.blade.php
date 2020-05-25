@@ -26,10 +26,12 @@ Dashboard [Tripulante]
     </div>
 </div>
 <div class="row justify-content-end">
-    <div class="tarjeta shadow-sm" style="padding: 15px; margin-right:10px">
-        <canvas id="graficoBarra" width="700" height="300"></canvas>
+    <div class="col-xl-6 col-md-3">
+        <div class="tarjeta shadow-sm" style="padding: 15px; margin-right:10px">
+            <canvas id="graficoBarra" width="700" height="300"></canvas>
+        </div>
     </div>
-    <div class="col-3" style="margin-top: 50px">
+    <div class="col-xl-3 col-md-2" style="margin-top: 50px">
         <div class="tarjeta shadow-sm" style="height: 100px">
             <div class="card-body mt-2">
                 <div style="margin-left: 10px">
@@ -64,7 +66,7 @@ Dashboard [Tripulante]
         </div>
         {{-- <button class="btn btn-primary btn-lg btn-block mt-3 shadow-sm">Botón</button> --}}
     </div>
-    <div class="col-3" style="margin-top: 50px">
+    <div class="col-xl-3 col-md-2" style="margin-top: 50px">
         <div class="tarjeta shadow-sm" style="height: 100px">
             <div class="card-body mt-2">
                 <div style="margin-left: 10px">

@@ -153,8 +153,12 @@ class ObjetivoController extends Controller
                     ]);
                 }
             } else {
-                if ($alerta != null) {
-                    $alerta->where('recurso', $recurso)->delete();
+                $alertas = Alerta::where('recurso', $recurso)->get();
+                if ($alertas != null) {
+                    foreach ($alertas as $alerta) {
+                        $alerta->delete();
+                    }
+                    
                 }
             }
         }

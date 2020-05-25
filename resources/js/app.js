@@ -68,6 +68,7 @@ const app = new Vue({
                     this.errors = [],
 
                     $('#creacion').modal('hide');
+                    location.reload();
 
             }).catch(error => {
 
@@ -84,14 +85,14 @@ const app = new Vue({
                 if (!this.email) {
                     this.errors.push('El correo electrónico es obligatorio.');
                 } else if (!this.validEmail(this.email)) {
-                    this.errors.push('El correo electrónico debe ser válido.');
+                    this.errors.push('El correo electrónico debe ser válido y único.');
                 }
 
                 if (!this.password) {
                     this.errors.push("La contraseña es obligatoria");
                 }
 
-                this.errors.push(error);
+                //this.errors.push(error);
             });
         },
         validEmail: function (email) {

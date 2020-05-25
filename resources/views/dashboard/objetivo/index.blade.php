@@ -24,7 +24,7 @@ Dashboard [Objetivos]
 <div class="row">
     <div class="col-12">
         <div class="nota-info p-2">
-            <div class="ml-2">No se recomienda tener más de 15 objetivos simultáneos, manten la atención en los recursos y cuida el bien común de la nave.</div> 
+            <div class="ml-2">No se recomienda tener más de 15 objetivos simultáneos, mantén la atención en los recursos y cuida el bien común de la nave.</div> 
         </div>
     </div>
 </div>
@@ -53,7 +53,7 @@ Dashboard [Objetivos]
 
                     <td class="font-italic">{{ $objetivo->id }}</td>
                     <td class="">{{ $objetivo->titulo }}</td>
-                    <td>{{ $objetivo->descripcion }}</td>
+                    <td>{!! $objetivo->descripcion !!}</td>
                     <td>{{ $objetivo->sector->nombre }}</td>
                     <td>{{ $objetivo->created_at->format('d-m-Y') }}</td>
                     <td style="width: 62px;">
