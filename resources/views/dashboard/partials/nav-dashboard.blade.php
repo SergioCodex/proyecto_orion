@@ -50,18 +50,18 @@
                 <h5 class="ml-4 text-light pb-3" style="border-bottom: 1px solid white">Información</h5>
             </div>
             <li class="submenu-nav">
-                <a href="#"><span class="fa fa-user mr-3"></span> Tripulante</a>
+            <a href="{{route('user.index')}}"><span class="fa fa-thumbtack mr-3"></span>
+                    Horario</a>
             </li>
             <li class="submenu-nav">
-                <a href="#"><span class="fa fa-thumbtack mr-3"></span>
-                    Horario</a>
+            <a href="{{ route('user.edit', Auth::user()->id)}}"><span class="fa fa-user mr-3"></span> Tripulante</a>
             </li>
             <div class="mt-3 mb-2">
                 <h5 class="ml-4 text-light pb-3" style="border-bottom: 1px solid white">Soporte</h5>
             </div>
             <li class="submenu-nav">
                 <a href="#"><span class="fa fa-exclamation-triangle mr-3"></span>
-                    Incidencia</a>
+                    Incidencias</a>
             </li>
 
             @else

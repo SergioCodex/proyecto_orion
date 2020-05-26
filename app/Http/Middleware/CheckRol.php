@@ -17,7 +17,7 @@ class CheckRol
     public function handle($request, Closure $next)
     {
         if(Auth::user()->id_rol == 1){
-            return redirect('/user/dashboard');
+            return redirect('/dashboard/user');
         }
 
         return $next($request);

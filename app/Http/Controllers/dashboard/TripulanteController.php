@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTripulantePost;
 use App\Http\Requests\UpdateTripulantePut;
+use App\Http\Requests\UpdateUserPut;
 
 class TripulanteController extends Controller
 {

@@ -23,7 +23,7 @@ Route::resource('dashboard/recurso', 'dashboard\RecursoController');
 Route::resource('dashboard/objetivo', 'dashboard\ObjetivoController');
 Route::resource('dashboard/alerta', 'dashboard\AlertaController');
 
-Route::resource('user/dashboard', 'userDashboard\UserController');
+Route::resource('dashboard/user', 'userDashboard\UserController');
 
 Auth::routes();
 

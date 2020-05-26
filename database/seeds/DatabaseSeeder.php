@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call(
             IncidenciaTableSeeder::class,
             RequisitoTableSeeder::class,
-            ObjetivoTableSeeder::class
+            ObjetivoTableSeeder::class,
+            HorarioTableSeeder::class,
         );
     }
 }

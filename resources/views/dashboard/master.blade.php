@@ -10,6 +10,7 @@
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500&family=Righteous&family=Roboto+Condensed&family=Unica+One&display=swap" rel="stylesheet">
     
     
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
