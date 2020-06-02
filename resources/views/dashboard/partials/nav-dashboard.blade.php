@@ -54,14 +54,14 @@
                     Horario</a>
             </li>
             <li class="submenu-nav">
-            <a href="{{ route('user.edit', Auth::user()->id)}}"><span class="fa fa-user mr-3"></span> Tripulante</a>
+            <a href="{{ route('user.edit', Auth::user()->id)}}"><span class="fa fa-user mr-3"></span> Mi Perfil</a>
             </li>
             <div class="mt-3 mb-2">
                 <h5 class="ml-4 text-light pb-3" style="border-bottom: 1px solid white">Soporte</h5>
             </div>
             <li class="submenu-nav">
-                <a href="#"><span class="fa fa-exclamation-triangle mr-3"></span>
-                    Incidencias</a>
+            <a href="{{route('user.misIncidencias', Auth::user()->id)}}"><span class="fa fa-exclamation-triangle mr-3"></span>
+                    Mis Incidencias</a>
             </li>
 
             @else

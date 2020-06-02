@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\userDashboard;
 
 use App\Horario;
+use Carbon\Carbon;
 use App\Tripulante;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
@@ -10,9 +11,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateTripulantePut;
+use App\Incidencia;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +41,14 @@ class UserController extends Controller
             $calendario_ordenado[$parcial->hora_inicio . ' - ' . $parcial->hora_fin][] = ["tarea" => $parcial->tarea, "inicio" => $parcial->hora_inicio, "fin" => $parcial->hora_fin];
         }
 
-        return view('dashboard.user.index', compact('rango_tiempo', 'calendario_ordenado', 'dias'));
+        $tripulante = Tripulante::where('id', Auth::user()->id)->first();
+        $created = $tripulante->created_at;
+        $now = now();
+
+        $n_dias = $created->diffInDays($now);
+        $n_incidencias = Incidencia::where('id_comunicador', Auth::user()->id)->count();
+
+        return view('dashboard.user.index', compact('rango_tiempo', 'calendario_ordenado', 'dias', 'n_dias', 'tripulante', 'n_incidencias'));
     }
 
     /**
@@ -135,5 +149,20 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function misIncidencias($id){
+
+        //$tripulante = Tripulante::findOrFail($id);
+        $mis_incidencias = Incidencia::where('id_comunicador', $id)->get();
+
+        return view('dashboard.user.misIncidencias', compact('mis_incidencias'));
+
+    }
+
+    public function resolve($id, Incidencia $incidencia){
+
+        $incidencia->with(['notas', 'mensajes_incidencias']);
+        return view('dashboard.user.resolve', compact('incidencia'));
     }
 }

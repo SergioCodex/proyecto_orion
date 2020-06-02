@@ -12,18 +12,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset("css/app.css") }}">
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Styles -->
     <style>
         html,
         body {
-            background: rgba(255, 255, 255, 1);
-            background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
-            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
-            background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
-            background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
-            background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
             color: #c5c5c5;
             font-family: 'Nunito', sans-serif;
@@ -89,7 +84,7 @@
             <a href="{{ url('/') }}">Home</a>
             <a href="{{ route('tripulante.index')}}">Dashboard</a>
             <a href="#" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"><span class="fa fa-sign-out-alt mr-1"></span>
+                        document.getElementById('logout-form').submit();"><span class="fa fa-sign-out mr-1"></span>
                 Logout</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
@@ -110,17 +105,8 @@
             <div class="title m-b-md mt-5">
                 Proyecto Orion
             </div>
+            @include('dashboard.partials.footer')
 
-            {{-- <div class="links">
-                <a href="https://laravel.com/docs">Docs</a>
-                <a href="https://laracasts.com">Laracasts</a>
-                <a href="https://laravel-news.com">News</a>
-                <a href="https://blog.laravel.com">Blog</a>
-                <a href="https://nova.laravel.com">Nova</a>
-                <a href="https://forge.laravel.com">Forge</a>
-                <a href="https://vapor.laravel.com">Vapor</a>
-                <a href="https://github.com/laravel/laravel">GitHub</a>
-            </div> --}}
         </div>
     </div>
 

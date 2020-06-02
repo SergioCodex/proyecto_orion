@@ -24,6 +24,8 @@ Route::resource('dashboard/objetivo', 'dashboard\ObjetivoController');
 Route::resource('dashboard/alerta', 'dashboard\AlertaController');
 
 Route::resource('dashboard/user', 'userDashboard\UserController');
+Route::get('dashboard/user/{id}/incidencias', 'userDashboard\UserController@misIncidencias')->name('user.misIncidencias');
+Route::get('dashboard/user/{id}/incidencias/{incidencia}/resolve', 'userDashboard\UserController@resolve')->name('user.resolve');
 
 Auth::routes();
 

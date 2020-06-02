@@ -18,7 +18,7 @@ class IncidenciaController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin'])->except(['create', 'store']);
     }
 
     /**
@@ -45,7 +45,6 @@ class IncidenciaController extends Controller
     public function create()
     {
         $sectores = Sector::get();
-
         return view('dashboard.incidencia.create', compact('sectores'));
     }
 
@@ -65,7 +64,8 @@ class IncidenciaController extends Controller
             'id_sector_origen' => $request->id_sector_origen,
         ]);
 
-        return redirect('dashboard/incidencia')->with('status', '¡Ticket generado!');
+        if(Auth::user()->id_rol > 1) return redirect('dashboard/incidencia')->with('status', '¡Ticket generado!');
+        else if (Auth::user()->id_rol == 1) return redirect('dashboard/user')->with('status', '¡Ticket generado con éxito!');
 
     }
 

@@ -9,6 +9,7 @@ $tripulante = Tripulante::find(Auth::user()->id)
 
 <nav class="navbar navbar-light bg-light shadow-sm"
     style="position: absolute; width: 100%; height: 75px; border-bottom: 1px solid rgb(235, 235, 235); z-index:10">
+    <a href="{{ url()->previous() }}" class="ml-5 position-absolute"><i class="fa fa-arrow-left text-secondary"></i></a>
     <div class="row" style="width: 100%">
         <div class="col-1" style="margin-left: 100px">
             <span class="navbar-brand mb-0"> <i class="fa fa-user mr-2"></i> <span class="text-secondary">Hey,</span>

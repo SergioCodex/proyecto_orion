@@ -1,5 +1,9 @@
 @extends('dashboard.master')
 
+@section('title')
+    Reportar Incidencia
+@endsection
+
 @section('content')
 
 <div class="row justify-content-center">

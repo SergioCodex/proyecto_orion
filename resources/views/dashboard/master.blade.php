@@ -31,6 +31,7 @@
             @include('dashboard.partials.nav-dashboard')
 
             <div class="container-fluid">
+                
                 <!-- Page Content  -->
                 <div id="content" class="p-4 p-md-5 pt-5">
                     @yield('content')
