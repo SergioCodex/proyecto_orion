@@ -13,7 +13,7 @@ class RecursoController extends ApiResponseController
     public function consumos()
     {
 
-        $consumos = ConsumosObjetivo::get();
+        $consumos = ConsumosObjetivo::join('objetivos', 'consumos_objetivos.id_objetivo', '=', 'objetivos.id')->where('objetivos.completado', '0')->get();
         $recursos = Recurso::get();
 
         //$oxigeno = Recurso::select('oxigeno');

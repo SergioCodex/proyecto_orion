@@ -134,7 +134,7 @@ class ObjetivoController extends Controller
         ]);
 
         $recursos_disp = Recurso::first();
-        $consumos =  ConsumosObjetivo::get();
+        $consumos =  ConsumosObjetivo::join('objetivos', 'consumos_objetivos.id_objetivo', '=', 'objetivos.id')->where('objetivos.completado', '0')->get();
 
         $array_recursos = ['oxigeno', 'energia', 'combustible', 'agua', 'alimento'];
 
@@ -192,5 +192,15 @@ class ObjetivoController extends Controller
         $alertas = Alerta::where('id_objetivo', $objetivo->id)->get();
         //dd($requisitos);
         return view('dashboard.objetivo.gestion', compact('objetivo', 'recursos', 'requisitos', 'alertas'));
+    }
+
+    public function completado(Objetivo $objetivo){
+
+        //dd($objetivo);
+        
+        $objetivo->update(['completado' => 1]);
+
+        return back()->with('status', '¡Enhorabuena, objetivo completado!');
+
     }
 }

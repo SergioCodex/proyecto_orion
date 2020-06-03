@@ -24,7 +24,8 @@ Dashboard [Objetivos]
 <div class="row">
     <div class="col-12">
         <div class="nota-info p-2">
-            <div class="ml-2">No se recomienda tener más de 15 objetivos simultáneos, mantén la atención en los recursos y cuida el bien común de la nave.</div> 
+            <div class="ml-2">No se recomienda tener más de 15 objetivos simultáneos, mantén la atención en los recursos
+                y cuida el bien común de la nave.</div>
         </div>
     </div>
 </div>
@@ -35,6 +36,7 @@ Dashboard [Objetivos]
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Estado</th>
                     <th>Título</th>
                     <th>Descripción</th>
                     <th>Sector</th>
@@ -47,21 +49,33 @@ Dashboard [Objetivos]
 
                 @if (in_array($objetivo->id, $array_alertas))
                 <tr class="table-danger" style="background-color: rgb(243, 248, 255)">
+                    @elseif( $objetivo->completado == 1)
+                <tr style="background-color: rgb(184, 255, 202)">
                     @else
                 <tr style="background-color: rgb(243, 248, 255)">
                     @endif
 
                     <td class="font-italic">{{ $objetivo->id }}</td>
+                    @if ($objetivo->completado == 0)
+                    <td>Pendiente</td>
+                    @else
+                    <td>Completado</td>
+                    @endif
                     <td class="">{{ $objetivo->titulo }}</td>
                     <td>{!! $objetivo->descripcion !!}</td>
                     <td>{{ $objetivo->sector->nombre }}</td>
                     <td>{{ $objetivo->created_at->format('d-m-Y') }}</td>
-                    <td style="width: 62px;">
+                    @if ($objetivo->completado == 0)
+                    <td style="width: 112px;">
                         <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $objetivo->id }}"
                             class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                        <a href="{{ route('objetivo.gestion', $objetivo->id) }}" class="btn btn-success btn-sm"><i
+                        <a href="{{ route('objetivo.gestion', $objetivo->id) }}" class="btn btn-info btn-sm"><i
                                 class="fa fa-hammer"></i></a>
+                        <a href="{{ route('objetivo.completado', $objetivo->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-check"></i></a>
                     </td>
+                    @else
+                    <td></td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

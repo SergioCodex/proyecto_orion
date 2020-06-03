@@ -95,7 +95,7 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                     @foreach ($alertas as $alerta)
                     <div class="row">
                         <div class="col-12 mt-4 mb-2">
-                            <span class="ml-2 alert alert-danger"><small>{{ $alerta->mensaje }}</small></span>
+                            <span class="ml-1 alert alert-danger" style="font-size: 15px;"><small>{{ $alerta->mensaje }}</small></span>
                         </div>
                     </div>
                     @endforeach
