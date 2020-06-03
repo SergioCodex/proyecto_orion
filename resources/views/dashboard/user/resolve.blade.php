@@ -41,9 +41,13 @@ Incidencia Nº {{ $incidencia->id }}
                         <div class="form-group">
                             <input type="hidden" name="id_incidencia" value="{{ $incidencia->id }}">
                             <label class="lead" for="mensaje">Mensaje</label>
+                            @error('contenido')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                             <textarea id="descripcion" class="form-control" name="contenido" id="" rows="2"
                                 placeholder="Escribe tu respuesta..."></textarea>
                         </div>
+
                         <button class="btn btn-outline-success mt-1"><i class="fa fa-comment mr-1"></i> Enviar</button>
                     </form>
                 </div>

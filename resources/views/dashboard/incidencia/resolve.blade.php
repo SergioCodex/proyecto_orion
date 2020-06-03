@@ -41,8 +41,8 @@ Incidencia Nº {{ $incidencia->id }}
                                 <small> Nota escrita por: <b>{{ $nota->tripulante->name }}</b></small>
                             </div>
                             <div class="col-1 mr-3">
-                                <form style="display: inline;"
-                                    action="{{ route('nota.destroy', $nota->id)}}" method="POST">
+                                <form style="display: inline;" action="{{ route('nota.destroy', $nota->id)}}"
+                                    method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-link text-secondary"><i class="fa fa-trash"></i></button>
@@ -55,7 +55,7 @@ Incidencia Nº {{ $incidencia->id }}
                             </div>
                         </div>
                     </div>
-                    
+
                     @endforeach
                     <button data-nota="" data-toggle="modal" data-target="#crearNota"
                         class="btn btn-outline-primary mt-3"><i class="fa fa-sticky-note mr-1"></i> Añadir
@@ -77,6 +77,9 @@ Incidencia Nº {{ $incidencia->id }}
                         <div class="form-group">
                             <input type="hidden" name="id_incidencia" value="{{ $incidencia->id }}">
                             <label class="lead" for="mensaje">Mensaje</label>
+                            @error('contenido')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                             <textarea id="descripcion" class="form-control" name="contenido" id="" rows="2"
                                 placeholder="Escribe tu respuesta..."></textarea>
                         </div>

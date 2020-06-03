@@ -37,6 +37,9 @@ class MensajeIncidenciaController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate(['contenido' => 'required']);
+
         MensajeIncidencia::create([
             'id_tripulante' => Auth::user()->id,
             'id_incidencia' => $request->id_incidencia,
