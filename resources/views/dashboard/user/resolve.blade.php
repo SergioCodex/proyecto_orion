@@ -44,6 +44,7 @@ Incidencia Nº {{ $incidencia->id }}
                             @error('contenido')
                             <small class="text-danger">{{$message}}</small>
                             @enderror
+                            
                             <textarea id="descripcion" class="form-control" name="contenido" id="" rows="2"
                                 placeholder="Escribe tu respuesta..."></textarea>
                         </div>

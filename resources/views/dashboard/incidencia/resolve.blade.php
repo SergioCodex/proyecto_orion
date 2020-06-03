@@ -77,6 +77,7 @@ Incidencia Nº {{ $incidencia->id }}
                         <div class="form-group">
                             <input type="hidden" name="id_incidencia" value="{{ $incidencia->id }}">
                             <label class="lead" for="mensaje">Mensaje</label>
+                            
                             @error('contenido')
                             <small class="text-danger">{{$message}}</small>
                             @enderror
