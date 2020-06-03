@@ -82,7 +82,7 @@ class ObjetivoController extends Controller
 
         $requisitos->update(['id_objetivo' => $new_objetivo->id]);
 
-        $new_objetivo->update(['id_consumo' => $consumo->id]);
+        $new_objetivo->update(['id_consumos' => $consumo->id]);
 
 
         return redirect('dashboard/objetivo')->with('status', '¡Objetivo registrado!');
