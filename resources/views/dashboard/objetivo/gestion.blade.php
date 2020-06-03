@@ -207,7 +207,7 @@ Dashboard [Gestionar Objetivo {{ $objetivo->id }}]
                         <div class="tarjeta-recursos text-center shadow-sm">
                             <output class="text-success" name="alimentoOutputName"
                                 id="alimentoOutputId">{{$objetivo->consumos_objetivo->alimento }}</output> /
-                            {{ $requisitos->agua }}
+                            {{ $requisitos->alimento }}
                         </div>
                     </div>
                     <div id="alarma-alimento"></div>

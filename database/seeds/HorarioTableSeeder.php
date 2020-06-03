@@ -26,7 +26,7 @@ class HorarioTableSeeder extends Seeder
                 $random = random_int(1, 2);
                 if ($random == 1) {
                     DB::table('horarios')->insert([
-                        'id_sector' => 2,
+                        'id_sector' => 3,
                         'dia' => $dia,
                         'hora_inicio' => $tiempo['empieza'],
                         'hora_fin' => $tiempo['fin'],
@@ -34,7 +34,7 @@ class HorarioTableSeeder extends Seeder
                     ]);
                 } else {
                     DB::table('horarios')->insert([
-                        'id_sector' => 2,
+                        'id_sector' => 3,
                         'dia' => $dia,
                         'hora_inicio' => $tiempo['empieza'],
                         'hora_fin' => $tiempo['fin'],

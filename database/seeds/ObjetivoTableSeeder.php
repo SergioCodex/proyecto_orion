@@ -12,11 +12,12 @@ class ObjetivoTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             DB::table('objetivos')->insert([
                 'titulo' => 'Objetivo nº' . $i,
                 'id_sector' => 1,
-                'id_requisitos' => 1,
+                'id_requisitos' => $i,
+                'id_consumos' => $i,
                 'descripcion' => 'Descripcion general objetivo nº'.$i,
                 'created_at' => now(),
                 'updated_at' => now()

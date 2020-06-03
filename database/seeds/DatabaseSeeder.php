@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(
-            IncidenciaTableSeeder::class,
+            [IncidenciaTableSeeder::class,
             RequisitoTableSeeder::class,
             ObjetivoTableSeeder::class,
-            HorarioTableSeeder::class,
+            HorarioTableSeeder::class]
         );
     }
 }

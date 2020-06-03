@@ -17,8 +17,11 @@ class IncidenciaTableSeeder extends Seeder
             DB::table('incidencias')->insert([
                 'id_comunicador' => 1,
                 'id_sector_origen' => 1,
+                'id_agente' => 1,
                 'titulo' => 'Ticket prueba ' . $i,
                 'descripcion' => 'Descripcion general ticket nº'.$i,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
     }

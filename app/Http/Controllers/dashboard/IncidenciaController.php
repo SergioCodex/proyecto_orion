@@ -62,6 +62,7 @@ class IncidenciaController extends Controller
             'descripcion' => $request->descripcion,
             'id_comunicador' => Auth::user()->id,
             'id_sector_origen' => $request->id_sector_origen,
+            'id_agente' => 1
         ]);
 
         if(Auth::user()->id_rol > 1) return redirect('dashboard/incidencia')->with('status', '¡Ticket generado!');
