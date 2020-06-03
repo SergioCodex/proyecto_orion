@@ -24,7 +24,7 @@ Dashboard [Objetivos]
 <div class="row">
     <div class="col-12">
         <div class="nota-info p-2">
-            <div class="ml-2">No se recomienda tener más de 15 objetivos simultáneos, mantén la atención en los recursos
+            <div class="ml-2">No se recomienda tener más de 5 objetivos simultáneos, mantén la atención en los recursos
                 y cuida el bien común de la nave.</div>
         </div>
     </div>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RequisitoTableSeeder extends Seeder
+class ConsumosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,13 +13,13 @@ class RequisitoTableSeeder extends Seeder
     public function run()
     {
         for ($i = 1; $i <= 5; $i++) {
-            DB::table('requisitos_objetivos')->insert([
+            DB::table('consumos_objetivos')->insert([
                 'id_objetivo' => $i,
-                'oxigeno' => random_int(0, 100000),
-                'agua' => random_int(0, 100000),
-                'alimento' => random_int(0, 100000),
-                'combustible' => random_int(0, 100000),
-                'energia' => random_int(0, 100000),
+                'oxigeno' => random_int(0, 10000),
+                'agua' => random_int(0, 10000),
+                'alimento' => random_int(0, 10000),
+                'combustible' => random_int(0, 10000),
+                'energia' => random_int(0, 10000),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

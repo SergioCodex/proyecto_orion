@@ -19,10 +19,9 @@ class CreateObjetivosTable extends Migration
             $table->string('descripcion');
             $table->bigInteger('id_sector')->unsigned();
             $table->bigInteger('id_requisitos')->unsigned();
+            $table->bigInteger('id_consumos')->unsigned();
+            $table->integer('compleado')->default(0);
             $table->timestamps();
-
-            $table->foreign('id_sector')->references('id')->on('sectores');
-            $table->foreign('id_requisitos')->references('id')->on('requisitos_objetivos');
         });
     }
 

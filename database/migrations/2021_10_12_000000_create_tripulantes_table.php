@@ -26,8 +26,8 @@ class CreateTripulantesTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('id_rol')->references('id')->on('roles');
-            $table->foreign('id_sector')->references('id')->on('sectores');
+            $table->foreign('id_rol')->references('id')->on('rols');
+            $table->foreign('id_sector')->references('id')->on('sectors');
         });
 
         

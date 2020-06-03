@@ -19,9 +19,10 @@ class CreateHorariosTable extends Migration
             $table->string('dia');
             $table->string('hora_inicio');
             $table->string('hora_fin');
+            $table->string('tarea');
             $table->timestamps();
 
-            $table->foreign('id_sector')->references('id')->on('sectores');
+            $table->foreign('id_sector')->references('id')->on('sectors');
         });
 
         
