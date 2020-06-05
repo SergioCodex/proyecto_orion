@@ -12,10 +12,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(
-            [IncidenciaTableSeeder::class,
-            RequisitoTableSeeder::class,
-            ObjetivoTableSeeder::class,
-            HorarioTableSeeder::class]
+            [
+                RolsTableSeeder::class,
+                SectorsTableSeeder::class,
+                IncidenciaTableSeeder::class,
+                RequisitoTableSeeder::class,
+                ConsumosTableSeeder::class,
+                ObjetivoTableSeeder::class,
+                HorarioTableSeeder::class,
+                RecursosTableSeeder::class
+            ]
         );
     }
 }

@@ -20,7 +20,6 @@ class CreateTripulantesTable extends Migration
             $table->bigInteger('id_rol')->unsigned()->default('1');
             $table->bigInteger('id_sector')->unsigned()->default('1');;
             $table->string('email')->unique();
-            $table->enum('baja', ['1', '0'])->nullable()->default('0');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -40,6 +39,6 @@ class CreateTripulantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tripulantes');
     }
 }

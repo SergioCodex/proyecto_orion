@@ -20,7 +20,7 @@ class CreateObjetivosTable extends Migration
             $table->bigInteger('id_sector')->unsigned();
             $table->bigInteger('id_requisitos')->unsigned();
             $table->bigInteger('id_consumos')->unsigned();
-            $table->integer('compleado')->default(0);
+            $table->integer('completado')->default(0);
             $table->timestamps();
         });
     }

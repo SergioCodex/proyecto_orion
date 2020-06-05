@@ -20,7 +20,7 @@ class CreateIncidenciasTable extends Migration
             $table->bigInteger('id_sector_origen')->unsigned();
             $table->string('titulo');
             $table->string('descripcion');
-            $table->bigInteger('id_agente')->unsigned()->nullable();
+            $table->bigInteger('id_agente')->unsigned()->default(1);
             $table->timestamps();
         });
     }
