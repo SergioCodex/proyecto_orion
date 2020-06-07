@@ -15,7 +15,7 @@ class CreateRequisitosObjetivosTable extends Migration
     {
         Schema::create('requisitos_objetivos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_objetivo')->unsigned();
+            $table->bigInteger('id_objetivo')->unsigned()->nullable();
             $table->double('oxigeno')->nullable();
             $table->double('agua')->nullable();
             $table->double('alimento')->nullable();
